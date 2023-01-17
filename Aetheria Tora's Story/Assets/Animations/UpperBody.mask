@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: root
+    m_Weight: 1
+  - m_Path: root/humanoid_
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ L Thigh
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ L Thigh/humanoid_ L Calf
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ L Thigh/humanoid_ L Calf/humanoid_
+      L Foot
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ L Thigh/humanoid_ L Calf/humanoid_
+      L Foot/humanoid_ L Toe0
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ R Thigh
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ R Thigh/humanoid_ R Calf
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ R Thigh/humanoid_ R Calf/humanoid_
+      R Foot
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ R Thigh/humanoid_ R Calf/humanoid_
+      R Foot/humanoid_ R Toe0
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger0
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger0/humanoid_ L Finger01
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger0/humanoid_ L Finger01/humanoid_ L Finger02
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger1
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger1/humanoid_ L Finger11
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger1/humanoid_ L Finger11/humanoid_ L Finger12
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger2
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger2/humanoid_ L Finger21
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger2/humanoid_ L Finger21/humanoid_ L Finger22
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger3
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger3/humanoid_ L Finger31
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger3/humanoid_ L Finger31/humanoid_ L Finger32
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger4
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger4/humanoid_ L Finger41
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ L Clavicle/humanoid_ L UpperArm/humanoid_ L Forearm/humanoid_
+      L Hand/humanoid_ L Finger4/humanoid_ L Finger41/humanoid_ L Finger42
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ Neck
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ Neck/humanoid_ Head
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ Neck/humanoid_ Head/humanoid_ Ponytail1
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger0
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger0/humanoid_ R Finger01
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger0/humanoid_ R Finger01/humanoid_ R Finger02
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger1
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger1/humanoid_ R Finger11
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger1/humanoid_ R Finger11/humanoid_ R Finger12
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger2
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger2/humanoid_ R Finger21
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger2/humanoid_ R Finger21/humanoid_ R Finger22
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger3
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger3/humanoid_ R Finger31
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger3/humanoid_ R Finger31/humanoid_ R Finger32
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger4
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger4/humanoid_ R Finger41
+    m_Weight: 1
+  - m_Path: root/humanoid_/humanoid_ Pelvis/humanoid_ Spine/humanoid_ Spine1/humanoid_
+      Spine2/humanoid_ R Clavicle/humanoid_ R UpperArm/humanoid_ R Forearm/humanoid_
+      R Hand/humanoid_ R Finger4/humanoid_ R Finger41/humanoid_ R Finger42
+    m_Weight: 1
+  - m_Path: SK_Protof-Actor
+    m_Weight: 1
