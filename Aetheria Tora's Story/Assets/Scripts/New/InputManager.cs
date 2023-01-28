@@ -87,7 +87,18 @@ using UnityEngine.InputSystem;
 
         public Vector2 Movement
         {
-            get { return movement; }
+            get 
+        {
+            if (sprint)
+            {
+                movement *= 2;
+            }
+            return movement; 
+        }
+        }
+        public bool Sprint
+        {
+        get { return sprint; }
         }
         public Vector2 Aim
         {
@@ -96,10 +107,6 @@ using UnityEngine.InputSystem;
         public bool Jump
         {
             get { return jump; }
-        }
-        public bool Sprint
-        {
-            get { return sprint; }
         }
         public bool Crouch
         {

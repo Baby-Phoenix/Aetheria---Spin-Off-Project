@@ -61,7 +61,6 @@ public class CharacterControllerPlayerMovement : MonoBehaviour
     private float speed;
     private float animationBlend;
    
-    private const float threshold = 0.01f;
     private bool hasAnimator;
 
     private Vector3 hitPointNormal;
