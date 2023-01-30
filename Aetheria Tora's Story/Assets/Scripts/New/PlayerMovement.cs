@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float fallTimeoutDelta;
 
     [Header("Falling")]
-    private bool isGrounded;
+    public bool isGrounded;
     public float fallTimeout = 0.15f; // Change it to fall cooldown
     public float groundedOffset = -0.14f;
     public LayerMask groundLayer;
@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     public float sensY;
     private float rotationX;
     private float rotationY;
-    public Transform orientation;
     public float rotationSmoothTime = 0.12f;
 
     //player
@@ -148,10 +147,10 @@ public class PlayerMovement : MonoBehaviour
         //    anim.SetFloat("MotionSpeed", inputMagnitude);
         //}
 
-        Vector2 inputVector = inputManager.Movement.normalized;
+        Vector2 inputVector = inputManager.Movement.normalized; 
 
         Vector3 inputDir = new Vector3(inputVector.x, 0, inputVector.y);
-        float rotationVelocity = 0f;
+        float rotationVelocity = 1f;
         float targetRotation = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
         float finalRotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);
 
@@ -165,6 +164,10 @@ public class PlayerMovement : MonoBehaviour
         {
             targetMotion = new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z);
             speed = slopeSpeed;
+        }
+        if (inputManager.Sprint)
+        {
+            Debug.Log("Target Motion" + targetMotion.ToString());
         }
 
         characterController.Move(targetMotion.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
@@ -247,7 +250,6 @@ public class PlayerMovement : MonoBehaviour
 
         //rotate the cam and orientation
         transform.rotation = Quaternion.Euler(0, rotationY, 0);
-        orientation.rotation = Quaternion.Euler(rotationX, rotationY, 0);
     }
 
 

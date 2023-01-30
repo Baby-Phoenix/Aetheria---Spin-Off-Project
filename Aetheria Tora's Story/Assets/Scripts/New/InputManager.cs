@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
     {
 
         // W is +1y, S is -1y, A is -1x, D is +1x
-        private Vector2 movement;
-        private Vector2 aim;
-        private bool jump;
-        private bool sprint;
-        private bool crouch;
-        private bool shoot;
-        private bool slide;
-        private bool aimDownSight;
+       [SerializeField] private Vector2 movement;
+       [SerializeField] private Vector2 aim;
+       [SerializeField] private bool jump;
+       [SerializeField] private bool sprint;
+       [SerializeField] private bool crouch;
+       [SerializeField] private bool shoot;
+       [SerializeField] private bool slide;
+       [SerializeField] private bool aimDownSight;
 
     public void OnJump(InputValue value)
     {
@@ -91,6 +91,7 @@ using UnityEngine.InputSystem;
         {
             if (sprint)
             {
+                movement = movement.normalized;
                 movement *= 2;
             }
             return movement; 

@@ -71,11 +71,11 @@ public class TwinStickMovement : MonoBehaviour
 
     void HandleInput()
     {
-        movement = playerControls.Controls.Movement.ReadValue<Vector2>();
-        aim = playerControls.Controls.Aim.ReadValue<Vector2>();
+        //movement = playerControls.Controls.Movement.ReadValue<Vector2>();
+        //aim = playerControls.Controls.Aim.ReadValue<Vector2>();
 
-        jump = playerControls.Controls.Jump.ReadValue<float>()*4;
-        isJump = jump > 0 && !isJump;
+        //jump = playerControls.Controls.Jump.ReadValue<float>()*4;
+        //isJump = jump > 0 && !isJump;
 
     }
 
@@ -105,7 +105,7 @@ public class TwinStickMovement : MonoBehaviour
         }
 
         controller.Move(move * Time.deltaTime * playerSpeed);
-        GetComponent<PlayerSideScrollAim>().mousePos = aim;
+       // GetComponent<PlayerSideScrollAim>().mousePos = aim;
 
         HandleAnimation();
     }

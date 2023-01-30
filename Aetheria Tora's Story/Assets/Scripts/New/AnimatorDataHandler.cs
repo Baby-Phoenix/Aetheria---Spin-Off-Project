@@ -13,7 +13,7 @@ public class AnimatorDataHandler : MonoBehaviour
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)

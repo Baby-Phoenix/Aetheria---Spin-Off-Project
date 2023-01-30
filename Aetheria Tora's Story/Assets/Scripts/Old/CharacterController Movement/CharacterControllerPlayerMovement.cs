@@ -111,7 +111,15 @@ public class CharacterControllerPlayerMovement : MonoBehaviour
         CameraMovement();
     }
 
-  
+    private void OnDrawGizmos()
+    {
+        Vector3 spherePos = new Vector3(transform.position.x, transform.position.y - groundedOffset - characterController.height / 2.6f,
+                          transform.position.z);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spherePos, characterController.radius);
+    }
+
+
     private void GroundedChecker()
     {
         Vector3 spherePos = new Vector3(transform.position.x, transform.position.y - groundedOffset - characterController.height / 2.6f,
@@ -252,7 +260,7 @@ public class CharacterControllerPlayerMovement : MonoBehaviour
             anim.SetFloat("MotionSpeed", inputMagnitude);
         }
 
-        Vector3 inputDir = new Vector3(inputManager.Movement.x, 0, inputManager.Movement.y);
+        Vector3 inputDir = new Vector3(inputManager.Movement.x, 0, inputManager.Movement.y).normalized;
         float rotationVelocity = 0f;
         float targetRotation = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
         float finalRotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);
