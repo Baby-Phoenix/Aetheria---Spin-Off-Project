@@ -16,10 +16,10 @@ public class AnimatorDataHandler : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
     {
-        animator.SetFloat("X", verticalMovement, 0.1f, Time.deltaTime);
-        animator.SetFloat("Z", horizontalMovement, 0.1f, Time.deltaTime);
+        animator.SetFloat("charVelX", horizontalMovement, 0.1f, Time.deltaTime);
+        animator.SetFloat("charVelZ", verticalMovement, 0.1f, Time.deltaTime);
     }
     public void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {

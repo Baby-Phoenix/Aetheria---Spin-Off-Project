@@ -109,7 +109,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(inputManager.Movement.x, 0, inputManager.Movement.y);
 
-        moveDirection = transform.InverseTransformDirection(moveDirection);
+        //moveDirection = transform.InverseTransformDirection(moveDirection);
+
+        animatorDataHandler.UpdateAnimatorValues(moveDirection.x, moveDirection.z);
 
         //anim.SetBool("IsJump", isJump);
         //anim.SetBool("IsGround", controller.velocity.y <= 0);
@@ -165,17 +167,13 @@ public class PlayerMovement : MonoBehaviour
             targetMotion = new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z);
             speed = slopeSpeed;
         }
-        if (inputManager.Sprint)
-        {
-            Debug.Log("Target Motion" + targetMotion.ToString());
-        }
-
+        
         characterController.Move(targetMotion.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
     private void GroundedChecker()
     {
-        Vector3 spherePos = new Vector3(transform.position.x, transform.position.y - groundedOffset - characterController.height / 2.6f,
+        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2.6f,
                             transform.position.z);
         isGrounded = Physics.CheckSphere(spherePos, characterController.radius, groundLayer,
                      QueryTriggerInteraction.Ignore);
@@ -267,5 +265,12 @@ public class PlayerMovement : MonoBehaviour
                 return false;
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2.6f,
+                             transform.position.z);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spherePos, characterController.radius);
     }
 }
