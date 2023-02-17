@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        animatorDataHandler = GetComponent<AnimatorDataHandler>();
+        animatorDataHandler = GetComponentInChildren<AnimatorDataHandler>();
         characterController = GetComponent<CharacterController>();
         inputManager = GetComponent<InputManager>();
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -157,7 +157,8 @@ public class PlayerMovement : MonoBehaviour
         float finalRotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);
 
         //if can rotate
-        transform.rotation = Quaternion.Euler(0.0f, finalRotation, 0.0f);
+        if(!animatorDataHandler.animator.GetBool("isInteracting"))
+            transform.rotation = Quaternion.Euler(0.0f, finalRotation, 0.0f);
 
 
         targetMotion = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
@@ -168,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
             speed = slopeSpeed;
         }
         
-        characterController.Move(targetMotion.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+        //characterController.Move(targetMotion.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
     private void GroundedChecker()
@@ -238,16 +239,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void CameraMovement()
     {
-        float mouseX = inputManager.Aim.x * Time.deltaTime * sensX;
-        float mouseY = inputManager.Aim.y * Time.deltaTime * sensY;
-
-        rotationY += mouseX;
-
-        rotationX -= mouseY;
-        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
-
         //rotate the cam and orientation
-        transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        if (!animatorDataHandler.animator.GetBool("isInteracting"))
+        {
+            // if the angle between player and camera is greater than 10 lerp rotation of player, otherwise dont lerp
+            if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0)) > 10)
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0), Time.deltaTime * 10);
+            else
+                transform.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+        }
     }
 
 
@@ -270,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2.6f,
                              transform.position.z);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(spherePos, characterController.radius);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawSphere(spherePos, characterController.radius);
     }
 }

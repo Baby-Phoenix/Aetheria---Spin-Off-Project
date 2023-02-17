@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-public class AnimatorDataHandler : MonoBehaviour
+public class AnimatorDataHandler : AnimatorManager
 {
-    [Header("Refernces")]
-    private PlayerMovement playerMovement;
-    private Animator animator;
+    [Header("References")]
     public bool CanRotate;
 
     private void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
@@ -21,11 +18,15 @@ public class AnimatorDataHandler : MonoBehaviour
         animator.SetFloat("charVelX", horizontalMovement, 0.1f, Time.deltaTime);
         animator.SetFloat("charVelZ", verticalMovement, 0.1f, Time.deltaTime);
     }
-    public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+
+    public void EnableCombo()
     {
-        animator.applyRootMotion = isInteracting;
-        animator.SetBool("isInteracting", isInteracting);
-        animator.CrossFade(targetAnim, 0.2f);
+        animator.SetBool("canDoCombo", true);
+    }
+
+    public void DisableCombo()
+    {
+        animator.SetBool("canDoCombo", false);
     }
 
 

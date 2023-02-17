@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "LeftClick",
                     "type": "PassThrough",
                     "id": "f2b82325-db53-4f49-9a1d-d5387b4097ad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightClick",
+                    "type": "PassThrough",
+                    "id": "385a6bc3-1d73-4042-b433-59d0d42a2374",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -69,10 +78,19 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AimDownSight",
+                    "name": "ScrollUp",
                     "type": "PassThrough",
-                    "id": "d540fca5-cf49-4007-a594-5093201419d6",
-                    "expectedControlType": "Button",
+                    "id": "f936cbc6-ea7f-4fa4-9c99-4889b1821f9b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollDown",
+                    "type": "PassThrough",
+                    "id": "9facf1e9-8d42-42df-a0a7-17e4f9bd6b22",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -93,7 +111,7 @@
                 {
                     "name": "WASD",
                     "id": "c8969270-e9b5-4891-b68f-2059a5328f18",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -182,10 +200,10 @@
                     "name": "",
                     "id": "d10e4d66-dfb9-4a2e-a98b-0bea623c5d7c",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.5,pressPoint=0.75)",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -224,12 +242,34 @@
                 },
                 {
                     "name": "",
-                    "id": "ed9110c5-78c2-42dd-8858-8bc9b23f1b6f",
+                    "id": "04d36d80-c99a-4e14-a236-72c317499268",
                     "path": "<Mouse>/rightButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ff1ad36-8a55-43d8-8058-64f9fdd98e61",
+                    "path": "<Mouse>/scroll/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AimDownSight",
+                    "action": "ScrollUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb2510c8-c2c0-4ef0-bbf5-01b8ccfd3260",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
