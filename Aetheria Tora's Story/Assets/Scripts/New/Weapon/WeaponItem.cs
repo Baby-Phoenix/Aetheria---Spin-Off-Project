@@ -6,7 +6,8 @@ using UnityEngine;
 public class WeaponItem : Item
 {
     public GameObject modelPrefab;
-    public bool isUnarmed;
+    //public bool isUnarmed;
+    public bool isMelee;
 
     [Header("Idle Animations")]
     public string Right_Arm_Idle_01;

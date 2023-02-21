@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Orientation
   - Enemy
+  - Gun
   layers:
   - Default
   - TransparentFX

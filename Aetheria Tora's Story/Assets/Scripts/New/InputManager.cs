@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool scrollDown;
     [SerializeField] private bool slide;
     private Animator animator;
+    //[SerializeField]  private Gun gun;
 
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
@@ -49,7 +50,19 @@ public class InputManager : MonoBehaviour
         {
             playerInventory.ChangeRightWeapon();
         }
+
+        if (playerInventory.rightWeapon.isMelee)
+        {
+
+            animator.SetLayerWeight(animator.GetLayerIndex("Aiming"), 0);
+
+        }
+        else
+        {
+
+            animator.SetLayerWeight(animator.GetLayerIndex("Aiming"), 1);
     }
+        }
 
     public void OnJump(InputValue value)
     {
@@ -69,20 +82,27 @@ public class InputManager : MonoBehaviour
     public void OnLeftClick(InputValue value)
     {
 
-        if(canDoCombo)
+        if (playerInventory.rightWeapon.isMelee)
         {
-            comboFlag = true;
-            playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-            comboFlag = false;
+            if (canDoCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                comboFlag = false;
+            }
+            else
+            {
+                if (isInteracting)
+                    return;
+                if (canDoCombo)
+                    return;
+
+                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            }
         }
         else
         {
-            if (isInteracting)
-                return;
-            if (canDoCombo)
-                return;
-
-            playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            //gun.Shoot();
         }
 
 
@@ -100,10 +120,14 @@ public class InputManager : MonoBehaviour
 
     public void OnScrollUp(InputValue value)
     {
+       
+
         ScrollUpInput(value.isPressed);
     }
     public void OnScrollDown(InputValue value)
     {
+        
+
         ScrollDownInput(value.isPressed);
     }
 

@@ -8,7 +8,8 @@ public class CharacterControllerClimbing : MonoBehaviour
     public Transform orientation;
     public CharacterController character;
     public LayerMask whatIsWall;
-    CharacterControllerPlayerMovement playerMove;
+    public PlayerMovement playerMove;
+    //AnimatorDataHandler animatorDataHandler;
 
     [Header("Climbing")]
     public float climbSpeed;
@@ -51,8 +52,8 @@ public class CharacterControllerClimbing : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         inputManager = GetComponent<InputManager>();
-        playerMove = GetComponent<CharacterControllerPlayerMovement>();// this will be changed since the charactercontroller would be on a seperate gameobject
-        orientation = GameObject.FindWithTag("Orientation").transform;
+        playerMove = GetComponent<PlayerMovement>();// this will be changed since the charactercontroller would be on a seperate gameobject
+        orientation = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
@@ -124,7 +125,7 @@ public class CharacterControllerClimbing : MonoBehaviour
 
     private void ClimbingMovement()
     {
-       float verticalVelocity = Mathf.Sqrt(playerMove.jumpHeight * -2f * playerMove.gravity);
+        float verticalVelocity = Mathf.Sqrt(playerMove.jumpHeight * -2f * playerMove.gravity);
 
         Vector3 targetMotion = new Vector3(0, verticalVelocity, 0);
 
@@ -153,5 +154,4 @@ public class CharacterControllerClimbing : MonoBehaviour
         //rb.AddForce(forceToApply, ForceMode.Impulse);
         climbJumpLeft--;
     }
-
 }

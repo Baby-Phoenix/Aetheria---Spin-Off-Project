@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad260edf774677a4da6707e45324dedf, type: 3}
-  m_Name: Spear
+  m_Name: Pistol
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Spear
-  modelPrefab: {fileID: 8470255787270679984, guid: a56ac2d14408e7443aebe2a7779c33e4,
+  modelPrefab: {fileID: 8470255787270679984, guid: b4f6f882a3d57b54c95e14525cffd018,
     type: 3}
-  isMelee: 1
+  isMelee: 0
   Right_Arm_Idle_01: Right_Arm_Idle_01
   OH_Light_Attack_1: OH_Light_Attack_01
   OH_Light_Attack_2: OH_Light_Attack_02
