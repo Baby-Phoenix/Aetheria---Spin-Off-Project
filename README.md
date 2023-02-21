@@ -1,11 +1,11 @@
-# Archives of Aetheria: Tora's Story
+# Aetheria: Tora's Story
 
 > ## Note: This project is intended to be a spin-off for mainline title Archives of Aetheria
 
 ---
 
 > ### Project Description
-> Archives of Aetheria: Tora's Story is a 3D, single-player, dungeon crawler, roguelite game that has the player utilize both melee and ranged combat styles to purge the land of monsters born from corrupted aether.
+> Aetheria: Tora's Story is a 3D, single-player, dungeon crawler, roguelite game that has the player utilize both melee and ranged combat styles to purge the land of monsters born from corrupted aether.
 
 ## Game Description
 
