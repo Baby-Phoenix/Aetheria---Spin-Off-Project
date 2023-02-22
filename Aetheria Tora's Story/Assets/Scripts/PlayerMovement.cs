@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController characterController;
     private AnimatorDataHandler animatorDataHandler;
     private GameObject mainCamera;
+    public Transform lookat;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -91,7 +92,6 @@ public class PlayerMovement : MonoBehaviour
             if (!animatorDataHandler.animator.GetBool("isInteracting"))
             {
                 animatorDataHandler.UpdateRollAnimatorValues(inputManager.Movement.x, inputManager.Movement.y);
-                animatorDataHandler.animator.SetBool("isRoll", true);
                 animatorDataHandler.PlayTargetAnimation("Rolling", true);
             }
            
@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundedChecker()
     {
-        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2.6f,
+        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2f,
                             transform.position.z);
         isGrounded = Physics.CheckSphere(spherePos, characterController.radius, groundLayer,
                      QueryTriggerInteraction.Ignore);
@@ -170,60 +170,79 @@ public class PlayerMovement : MonoBehaviour
 
     private void JumpHandler()
     {
-        if (isGrounded) //while the player is grounded
+        if (isGrounded)
         {
-            fallTimeoutDelta = fallTimeout;
-
-            //if (hasAnimator)
-            //{
-            //    anim.SetBool("isJumping", false);
-            //    anim.SetBool("isFalling", false);
-            //}
-
-            if (verticalVelocity < 0.0f)
-                verticalVelocity = -2f;
-
-            if (inputManager.Jump && jumpTimeoutDelta <= 0.0f) // we can call an invoke instead of using jumpTimeoutDetla
+            if (inputManager.Jump)
             {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-                //if (hasAnimator)
-                //{
-                //    anim.SetBool("isJumping", true);
-                //}
-            }
-            if (jumpTimeoutDelta >= 0.0f)
-            {
-                jumpTimeoutDelta -= Time.deltaTime;
+                if (!animatorDataHandler.animator.GetBool("isInteracting"))
+                {
+                     animatorDataHandler.UpdateRollAnimatorValues(inputManager.Movement.x, inputManager.Movement.y);
+                    animatorDataHandler.PlayTargetAnimation("Jumping", true);
+                }
             }
         }
 
-        else //while the players is in the air or falling
-        {
-            jumpTimeoutDelta = jumpTimeout;
+        //if (isGrounded) //while the player is grounded
+        //{
+        //    fallTimeoutDelta = fallTimeout;
 
-            if (fallTimeoutDelta >= 0.0f)
-            {
-                fallTimeoutDelta -= Time.deltaTime;
-            }
-            else
-            {
-                //if (hasAnimator)
-                //{
-                //    anim.SetBool("isFalling", true);
-                //}
-            }
-        }
+        //    //if (hasAnimator)
+        //    //{
+        //    //    anim.SetBool("isJumping", false);
+        //    //    anim.SetBool("isFalling", false);
+        //    //}
 
-        if (verticalVelocity < terminalVelocity)
-        {
-            verticalVelocity += gravity * Time.deltaTime;
-        }
+        //    if (verticalVelocity < 0.0f)
+        //        verticalVelocity = -2f;
+
+        //    if (inputManager.Jump && jumpTimeoutDelta <= 0.0f) // we can call an invoke instead of using jumpTimeoutDetla
+        //    {
+        //        verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+        //        //if (hasAnimator)
+        //        //{
+        //        //    anim.SetBool("isJumping", true);
+        //        //}
+        //    }
+        //    if (jumpTimeoutDelta >= 0.0f)
+        //    {
+        //        jumpTimeoutDelta -= Time.deltaTime;
+        //    }
+        //}
+
+        //else //while the players is in the air or falling
+        //{
+        //    jumpTimeoutDelta = jumpTimeout;
+
+        //    if (fallTimeoutDelta >= 0.0f)
+        //    {
+        //        fallTimeoutDelta -= Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //        //if (hasAnimator)
+        //        //{
+        //        //    anim.SetBool("isFalling", true);
+        //        //}
+        //    }
+        //}
+
+        //if (verticalVelocity < terminalVelocity)
+        //{
+        //    verticalVelocity += gravity * Time.deltaTime;
+        //}
 
     }
 
     private void CameraMovement()
     {
+        lookat.position = transform.position;
+        // if the angle between player and camera is greater than 10 lerp rotation of player, otherwise dont lerp
+        if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0)) > 10)
+            lookat.rotation = Quaternion.Lerp(lookat.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0), Time.deltaTime * 10);
+        else
+            lookat.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+
         //rotate the cam and orientation
         if (!animatorDataHandler.animator.GetBool("isInteracting"))
         {
@@ -236,9 +255,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2.6f,
-                             transform.position.z);
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawSphere(spherePos, characterController.radius);
+        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2f,
+                            transform.position.z);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spherePos, characterController.radius);
     }
 }
