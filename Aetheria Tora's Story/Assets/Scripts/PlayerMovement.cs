@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         GroundedChecker();
        // SpeedHandler();
         JumpHandler();
-        //MovementHandler();
+        MovementHandler();
         AnimationHandler();
         RollHandler();
         CrouchHandler();
@@ -103,13 +103,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputManager.Roll)
         {
+
+            playerHeightManagerl.SetCharacterControllerValues(inputManager.Roll);
+
             if (!animatorDataHandler.animator.GetBool("isInteracting"))
             {
                 animatorDataHandler.UpdateRollAnimatorValues(inputManager.Movement.x, inputManager.Movement.y);
                 animatorDataHandler.PlayTargetAnimation("Rolling", true);
-                playerHeightManagerl.SetCharacterControllerValues(inputManager.Roll);
             }
-           
         }
     }
 
@@ -168,8 +169,9 @@ public class PlayerMovement : MonoBehaviour
 
 
         targetMotion = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
-        
+
         //characterController.Move(targetMotion.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+        //characterController.Move(transform.root.GetComponentInChildren<Animator>().deltaPosition);
     }
 
     private void GroundedChecker()
@@ -252,7 +254,6 @@ public class PlayerMovement : MonoBehaviour
     private void CameraMovement()
     {
         lookat.position = transform.position;
-        // if the angle between player and camera is greater than 10 lerp rotation of player, otherwise dont lerp
         if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0)) > 10)
             lookat.rotation = Quaternion.Lerp(lookat.rotation, Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0), Time.deltaTime * 10);
         else
@@ -267,6 +268,8 @@ public class PlayerMovement : MonoBehaviour
             else
                 transform.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
         }
+
+        
     }
     //private void OnDrawGizmos()
     //{
