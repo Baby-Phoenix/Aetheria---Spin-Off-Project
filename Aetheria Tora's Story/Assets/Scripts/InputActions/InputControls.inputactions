@@ -213,7 +213,7 @@
                     "name": "",
                     "id": "eb9e04dd-5c8c-47d0-9fd0-af6545588812",
                     "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",

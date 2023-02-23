@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private AnimatorDataHandler animatorDataHandler;
     private GameObject mainCamera;
     public Transform lookat;
+    private PlayerHeightManager playerHeightManagerl;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed;
     public float crouchHeight = 0.5f;
     private float standingHeight = 2f;
+    public bool isToggle = true;
 
     [Header("Camera")]
     //put camera stuff here if needed
@@ -68,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         inputManager = GetComponent<InputManager>();
         mainCamera = GameObject.FindWithTag("MainCamera");
+        playerHeightManagerl = GetComponent<PlayerHeightManager>();
     }
 
     private void Update()
@@ -78,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         //MovementHandler();
         AnimationHandler();
         RollHandler();
+        CrouchHandler();
 
     }
 
@@ -85,6 +89,16 @@ public class PlayerMovement : MonoBehaviour
     {
         CameraMovement();
     }
+
+    private void CrouchHandler()
+    {
+        if (!animatorDataHandler.animator.GetBool("isInteracting"))
+        {
+            animatorDataHandler.animator.SetBool("isCrouching", inputManager.Crouch);
+            playerHeightManagerl.SetCharacterControllerValues(inputManager.Crouch);
+        }
+    }
+
     private void RollHandler() 
     {
         if (inputManager.Roll)
@@ -93,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animatorDataHandler.UpdateRollAnimatorValues(inputManager.Movement.x, inputManager.Movement.y);
                 animatorDataHandler.PlayTargetAnimation("Rolling", true);
+                playerHeightManagerl.SetCharacterControllerValues(inputManager.Roll);
             }
            
         }
@@ -253,11 +268,11 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
         }
     }
-    private void OnDrawGizmos()
-    {
-        Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2f,
-                            transform.position.z);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(spherePos, characterController.radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 spherePos = new Vector3(transform.position.x, (characterController.center.y + transform.position.y) - groundedOffset - characterController.height / 2f,
+    //                        transform.position.z);
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(spherePos, characterController.radius);
+    //}
 }

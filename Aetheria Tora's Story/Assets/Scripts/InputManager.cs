@@ -36,7 +36,6 @@ public class InputManager : MonoBehaviour
     {
         isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
-
         HandleQuickSlotsInput();
     }
     private void HandleQuickSlotsInput()
@@ -137,7 +136,8 @@ public class InputManager : MonoBehaviour
 
     public void OnCrouch(InputValue value)
     {
-        CrouchInput(value.isPressed);
+        crouch = !crouch;
+       // CrouchInput(value.isPressed);
     }
     private void MovementInput(Vector2 value)
     {
