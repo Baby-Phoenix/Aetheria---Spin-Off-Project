@@ -54,8 +54,9 @@ public class EnemyManager : MonoBehaviour
         }
         else if(enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance)
         {
-            enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
-            AttackTarget();
+            //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+            enemyLocomotionManager.ManualRotate();
+            //AttackTarget();
         }
     }
 

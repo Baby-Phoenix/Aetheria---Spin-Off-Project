@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Vector2 aim;
     [SerializeField] private bool jump;
     [SerializeField] private bool roll;
+    [SerializeField] private bool sprint;
     [SerializeField] private bool crouch;
     [SerializeField] private bool leftClick;
     [SerializeField] private bool rightClick; 
@@ -18,12 +19,16 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool scrollDown;
     private Animator animator;
     [SerializeField]  private Gun gun;
-
+   
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     public bool isInteracting;
     public bool canDoCombo;
     public bool comboFlag;
+
+
+    [SerializeField] private bool onRollValue;
+    [SerializeField] float onRollTimer = 0;
 
     private void Awake()
     {
@@ -37,6 +42,10 @@ public class InputManager : MonoBehaviour
         isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
         HandleQuickSlotsInput();
+
+       //  ResetBooleans();
+
+        
     }
     private void HandleQuickSlotsInput()
     {
@@ -131,7 +140,50 @@ public class InputManager : MonoBehaviour
 
     public void OnRoll(InputValue value)
     {
-        RollInput(value.isPressed);
+        roll = true;
+        print("tap");
+    }
+
+    public void OnSprint(InputValue value)
+    {
+        sprint = true;
+        print("hold");
+    }
+    public void OnResetRoll(InputValue value)
+    {
+        sprint = false;
+        roll = false;
+    }
+
+    private void ResetBooleans()
+    {
+
+        if (onRollValue)
+        {
+            onRollTimer += Time.deltaTime;
+
+            if (onRollTimer > 0 && onRollTimer <= 0.3)
+            {
+                sprint = false;
+                roll = true;
+            }
+            else if (onRollTimer > 0.3)
+            {
+                sprint = true;
+                roll = false;
+            }
+        }
+        else
+        {
+            roll = false;
+            sprint = false;
+            onRollTimer = 0;
+        }
+       
+
+      
+
+       
     }
 
     public void OnCrouch(InputValue value)

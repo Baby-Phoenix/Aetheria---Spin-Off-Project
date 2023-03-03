@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
 
 public class EnemyLocomotionManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EnemyLocomotionManager : MonoBehaviour
     public float stoppingDistance = 1;
 
     public float rotationSpeed = 15;
+    public float speed = 1;
 
     private void Awake()
     {
@@ -63,19 +65,22 @@ public class EnemyLocomotionManager : MonoBehaviour
 
         if (enemyManager.isPerformingAction) 
         {
-            //print("IN HERE");
-            enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+            //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
             navmeshAgent.enabled = false;
         }
         else
         {
-            if(distanceFromTarget > stoppingDistance)
+            Vector3 direction = navmeshAgent.destination - transform.position;
+
+            if (distanceFromTarget > stoppingDistance)
             {
-                enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0.9f);
+                enemyCharacterController.Move(direction.normalized * speed * Time.deltaTime);
+                //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0.9f);
             }
             else if(distanceFromTarget <= stoppingDistance)
             {
-                enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+                
+                //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
             }
             
         }
@@ -86,7 +91,25 @@ public class EnemyLocomotionManager : MonoBehaviour
         navmeshAgent.transform.localRotation = Quaternion.identity;
     }
 
-    private void HandleRotateToTarget()
+    public void ManualRotate()
+    {
+        if (!enemyManager.isPerformingAction)
+        {
+            // Calculate the direction vector from the agent to the target
+            Vector3 direction = currentTarget.transform.position - navmeshAgent.transform.position;
+            direction.y = 0; // Ensure the direction is in the x-z plane only
+
+            // Calculate the rotation angle in the y-axis using Atan2 function
+            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+            // Set the agent's rotation to the calculated angle in the y-axis
+            navmeshAgent.transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+        //navmeshAgent.transform.localRotation = Quaternion.identity;
+    }
+
+    public void HandleRotateToTarget()
     {
         //Rotate manually
         if (enemyManager.isPerformingAction)
@@ -113,7 +136,20 @@ public class EnemyLocomotionManager : MonoBehaviour
             navmeshAgent.SetDestination(currentTarget.transform.position);
             //enemyCharacterController.Move(targetVelocity);
             //enemyAnimatorDataHandler.UpdateAnimatorValues(targetVelocity.x, targetVelocity.z);
+
+            // Calculate the direction vector from the agent to the target
+            Vector3 direction = currentTarget.transform.position - navmeshAgent.transform.position;
+            direction.y = 0; // Ensure the direction is in the x-z plane only
+
+            // Calculate the rotation angle in the y-axis using Atan2 function
+            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+            // Set the agent's rotation to the calculated angle in the y-axis
+            navmeshAgent.transform.rotation = Quaternion.Euler(0, angle, 0);
+
             transform.rotation = Quaternion.Slerp(transform.rotation, navmeshAgent.transform.rotation, rotationSpeed / Time.deltaTime);
+
+
         }
     }
 }

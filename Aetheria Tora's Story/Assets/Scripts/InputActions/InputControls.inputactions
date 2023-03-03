@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "Roll",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "1effc5ae-f168-4e05-bb18-fc3f67fb6086",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -84,6 +84,24 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "b6e5a84c-3079-4a4e-9f32-d516cd9b6766",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetRoll",
+                    "type": "PassThrough",
+                    "id": "de0b99ef-1b25-412a-897d-b7040073fe0e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 }
             ],
@@ -250,6 +268,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ScrollDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbfac256-8c3f-4959-b5ec-cec847ccb2a9",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "586c0edc-6b58-4b95-b70d-5e6d6aca5b22",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetRoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
