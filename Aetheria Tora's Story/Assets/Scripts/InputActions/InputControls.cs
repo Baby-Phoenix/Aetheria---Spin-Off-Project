@@ -219,7 +219,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""33ba7814-df6d-4c59-a6f4-d76b6360a8ef"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

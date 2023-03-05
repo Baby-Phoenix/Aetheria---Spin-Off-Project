@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerLocomotion : MonoBehaviour
 {
-
+    [SerializeField] private Rig aimRig;
+    [SerializeField] private Transform aimObjectTransform;
+    [SerializeField] private LayerMask ignorePlayerMask;
     PlayerManager playerManager;
     Transform cameraObject;
     InputHandler inputHandler;
     public Vector3 moveDirection;
+
 
     [HideInInspector]
     public Transform myTransform;
@@ -47,6 +51,7 @@ public class PlayerLocomotion : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        aimRig = GetComponentInChildren<Rig>(); 
         cameraObject = Camera.main.transform;
         myTransform = transform;
         animatorHandler.Initialize();
@@ -59,6 +64,19 @@ public class PlayerLocomotion : MonoBehaviour
     #region Movement
     Vector3 normalVector;
     Vector3 targetPosition;
+
+    public void HandleAiming(float delta)
+    {
+        Camera camera = cameraObject.gameObject.GetComponent<Camera>();
+        Vector3 mousePosition = new Vector3(inputHandler.mouseX, inputHandler.mouseY, 0);
+
+        Ray ray = camera.ScreenPointToRay(mousePosition);
+
+        if(Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, ignorePlayerMask))
+        {
+            aimObjectTransform.position = raycastHit.point;
+        }
+    }
 
     private void HandleRotation(float delta)
     {
