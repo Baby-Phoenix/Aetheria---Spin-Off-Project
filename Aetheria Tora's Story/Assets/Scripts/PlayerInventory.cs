@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Awake()
     {
-        weaponSlotManager = GetComponent<WeaponSlotManager>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
     }
 
     private void Start()
@@ -29,6 +29,7 @@ public class PlayerInventory : MonoBehaviour
         //rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
         //leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
         rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
+        
         weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
         //weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
     }

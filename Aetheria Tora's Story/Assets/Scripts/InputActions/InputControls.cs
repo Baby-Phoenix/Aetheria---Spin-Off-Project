@@ -29,7 +29,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""05e8605b-3d40-4aae-b7d9-6ce663c79241"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -56,11 +56,11 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""LeftClick"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""f2b82325-db53-4f49-9a1d-d5387b4097ad"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -92,18 +92,18 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ScrollUp"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""f936cbc6-ea7f-4fa4-9c99-4889b1821f9b"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""ScrollDown"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""9facf1e9-8d42-42df-a0a7-17e4f9bd6b22"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

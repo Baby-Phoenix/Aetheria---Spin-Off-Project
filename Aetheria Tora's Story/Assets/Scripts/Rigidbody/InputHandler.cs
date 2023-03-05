@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InputHandler : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class InputHandler : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
-    public bool b_Input;
-    public bool rb_input;
-    public bool rt_input;
+    public bool spaceInput;
+    public bool shiftInput;
+    public bool leftClickInput;
+    public bool rightClickInput;
+    public bool scrollUp;
+    public bool scrollDown;
 
     public bool rollFlag;
     public bool sprintFlag;
@@ -56,7 +60,9 @@ public class InputHandler : MonoBehaviour
     {
         MoveInput(delta);
         HandleRollInput(delta);
+        HandleJumpInput();
         //HandleAttackInput(delta);
+        HandleQuickSlotsInput();
     }
 
     private void MoveInput(float delta)
@@ -68,10 +74,16 @@ public class InputHandler : MonoBehaviour
         mouseY = cameraInput.y;
     }
 
+    public void HandleJumpInput()
+    {
+        spaceInput = inputActions.Player.Jump.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+    }
+
     private void HandleRollInput(float delta)
     {
-        b_Input = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
-        if (b_Input)
+        shiftInput = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+        
+        if (shiftInput)
         {
             rollInputTimer += delta;
             sprintFlag = true;
@@ -88,29 +100,60 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    //private void HandleAttackInput(float delta)
-    //{
-    //    inputActions.Player.RB.performed += i => rb_input = true;
-    //    inputActions.Player.RT.performed += i => rt_input = true;
+    public void HandleAttackInput(float delta)
+    {
+        if(playerInventory.rightWeapon.isMelee)
+        {
+            inputActions.Player.LeftClick.performed += i => leftClickInput = true;
+            inputActions.Player.RightClick.performed += i => rightClickInput = true;
 
-    //    //RB input handles the right hand waepon's light attack
-    //    if (rb_input)
-    //    {
-    //        if (playerManager.canDoCombo)
-    //        {
-    //            comboFlag = true;
-    //            playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-    //            comboFlag = false;
-    //        }
-    //        else
-    //        {
-    //            playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-    //        }
-    //    }
+            //RB input handles the right hand weapon's light attack
+            if (leftClickInput)
+            {
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+                else
+                {
+                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                }
+            }
 
-    //    if (rt_input)
-    //    {
-    //        playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-    //    }
-    //}
+            if (rightClickInput)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            }
+        }
+        
+    }
+
+    private void HandleQuickSlotsInput()
+    {
+        inputActions.Player.ScrollUp.performed += i => scrollUp = true;
+        inputActions.Player.ScrollDown.performed += i => scrollDown = true;
+
+        if (scrollDown)
+        {
+            playerInventory.ChangeRightWeapon();
+        }
+        else if (scrollUp)
+        {
+            playerInventory.ChangeRightWeapon();
+        }
+
+        if (playerInventory.rightWeapon.isMelee)
+        {
+
+            playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+
+        }
+        else
+        {
+
+            playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
+        }
+    }
 }

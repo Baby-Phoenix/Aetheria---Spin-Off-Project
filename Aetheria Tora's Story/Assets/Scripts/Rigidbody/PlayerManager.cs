@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     InputHandler inputHandler;
-    Animator anim;
+    public Animator anim;
     PlayerLocomotion playerLocomotion;
 
     public bool isInteracting;
@@ -23,25 +23,41 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
+    private void Update()
+    {
+        float delta = Time.deltaTime;
+
+        isSprinting = inputHandler.shiftInput;
+
+        inputHandler.HandleAttackInput(delta);
+    }
+
     void FixedUpdate()
     {
         float delta = Time.deltaTime;
 
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
+        anim.SetBool("isInAir", isInAir);
 
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
+
+        
         playerLocomotion.HandleRollingAndSprinting(delta);
         playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+        playerLocomotion.HandleJumping();
     }
 
     private void LateUpdate()
     {
+        inputHandler.spaceInput = false;
         inputHandler.rollFlag = false;
         inputHandler.sprintFlag = false;
-        inputHandler.rb_input = false;
-        inputHandler.rt_input = false;
+        inputHandler.leftClickInput = false;
+        inputHandler.rightClickInput = false;
+        inputHandler.scrollUp = false;
+        inputHandler.scrollDown = false;
 
         if (isInAir)
         {

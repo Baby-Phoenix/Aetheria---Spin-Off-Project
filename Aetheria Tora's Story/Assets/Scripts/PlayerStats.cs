@@ -10,11 +10,11 @@ public class PlayerStats : CharacterStats
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
 
-    AnimatorDataHandler animatorDataHandler;
+    AnimatorHandler animatorHandler;
 
     private void Awake()
     {
-        animatorDataHandler = GetComponent<AnimatorDataHandler>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
     }
 
     void Start()
@@ -46,13 +46,13 @@ public class PlayerStats : CharacterStats
 
         healthBar.SetCurrentHealth(currentHealth);
 
-        animatorDataHandler.PlayTargetAnimation("TakeDamageFront", true);
+        animatorHandler.PlayTargetAnimation("TakeDamageFront", true);
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
 
-            animatorDataHandler.PlayTargetAnimation("DeathFront", true);
+            animatorHandler.PlayTargetAnimation("DeathFront", true);
 
             //Handle Player Death
         }

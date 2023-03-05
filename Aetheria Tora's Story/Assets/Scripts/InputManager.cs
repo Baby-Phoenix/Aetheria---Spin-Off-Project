@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Vector2 aim;
     [SerializeField] private bool jump;
     [SerializeField] private bool roll;
-    [SerializeField] private bool sprint;
+    //[SerializeField] private bool sprint;
     [SerializeField] private bool crouch;
     [SerializeField] private bool leftClick;
     [SerializeField] private bool rightClick; 
@@ -68,8 +68,8 @@ public class InputManager : MonoBehaviour
         {
 
             animator.SetLayerWeight(animator.GetLayerIndex("Aiming"), 1);
-    }
         }
+    }
 
     public void OnJump(InputValue value)
     {
@@ -146,12 +146,12 @@ public class InputManager : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        sprint = true;
+        //sprint = true;
         print("hold");
     }
     public void OnResetRoll(InputValue value)
     {
-        sprint = false;
+        //sprint = false;
         roll = false;
     }
 
@@ -164,19 +164,19 @@ public class InputManager : MonoBehaviour
 
             if (onRollTimer > 0 && onRollTimer <= 0.3)
             {
-                sprint = false;
+               // sprint = false;
                 roll = true;
             }
             else if (onRollTimer > 0.3)
             {
-                sprint = true;
+                //sprint = true;
                 roll = false;
             }
         }
         else
         {
             roll = false;
-            sprint = false;
+           // sprint = false;
             onRollTimer = 0;
         }
        

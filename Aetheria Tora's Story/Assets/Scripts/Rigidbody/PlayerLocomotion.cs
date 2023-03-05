@@ -99,6 +99,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5 && inputHandler.vertical > 0) 
         {
+            
             speed = sprintSpeed;
             playerManager.isSprinting = true;
             moveDirection *= speed;
@@ -128,11 +129,25 @@ public class PlayerLocomotion : MonoBehaviour
         
     }
 
-    public void HandleRollingAndSprinting(float delta)
+    public void HandleJumping()
     {
         if (animatorHandler.animator.GetBool("isInteracting"))
             return;
 
+        if (inputHandler.spaceInput)
+        {
+            moveDirection = cameraObject.forward;
+            animatorHandler.PlayTargetAnimation("Jumping", true);
+            moveDirection.y = 0;
+            Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+            myTransform.rotation = jumpRotation;
+        }
+    }
+    public void HandleRollingAndSprinting(float delta)
+    {
+        if (animatorHandler.animator.GetBool("isInteracting"))
+            return;
+       
         if (inputHandler.rollFlag)
         {
             moveDirection = cameraObject.forward;
@@ -144,6 +159,8 @@ public class PlayerLocomotion : MonoBehaviour
             myTransform.rotation = rollRotation;
         }
     }
+
+    
 
     public void HandleFalling(float delta, Vector3 moveDirection)
     {
@@ -159,6 +176,11 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (playerManager.isInAir)
         {
+            if (playerManager.isInteracting == false)
+            {
+                animatorHandler.PlayTargetAnimation("Falling", true);
+            }
+
             rigidbody.AddForce(-Vector3.up * fallingSpeed);
             rigidbody.AddForce(moveDirection * fallingSpeed / 9f);
         }
@@ -183,7 +205,7 @@ public class PlayerLocomotion : MonoBehaviour
                 if (inAirTimer > 0.5f)
                 {
                     Debug.Log("You were in the air for " + inAirTimer);
-                    animatorHandler.PlayTargetAnimation("Land", true);
+                    animatorHandler.PlayTargetAnimation("Landing", true);
                     inAirTimer = 0;
                 }
                 else
@@ -204,10 +226,7 @@ public class PlayerLocomotion : MonoBehaviour
 
             if (playerManager.isInAir == false)
             {
-                if (playerManager.isInteracting == false)
-                {
-                    animatorHandler.PlayTargetAnimation("Falling", true);
-                }
+                
 
                 Vector3 vel = rigidbody.velocity;
                 vel.Normalize();

@@ -40,7 +40,6 @@ public class DamageCollider : MonoBehaviour
 
         if (collision.tag == "Enemy")
         {
-            print("ENUMEE");
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
 
             if (enemyStats != null)

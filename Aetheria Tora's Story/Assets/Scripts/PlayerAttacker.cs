@@ -8,8 +8,8 @@ using UnityEngine.InputSystem.Controls;
 
 public class PlayerAttacker : MonoBehaviour
 {
-    AnimatorDataHandler animatorDataHandler;
-    InputManager inputManager;
+    AnimatorHandler animatorHandler;
+    InputHandler inputHandler;
     WeaponSlotManager weaponSlotManager;
     public string lastAttack;
 
@@ -18,9 +18,9 @@ public class PlayerAttacker : MonoBehaviour
 
     private void Awake()
     {
-        animatorDataHandler = GetComponent<AnimatorDataHandler>();
-        weaponSlotManager = GetComponent<WeaponSlotManager>();
-        inputManager = GetComponent<InputManager>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        inputHandler = GetComponent<InputHandler>();
     }
 
     private void FixedUpdate()
@@ -34,18 +34,18 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleWeaponCombo(WeaponItem weapon)
     {
-        if (inputManager.comboFlag)
+        if (inputHandler.comboFlag)
         {
-            animatorDataHandler.animator.SetBool("canDoCombo", false);
+            animatorHandler.animator.SetBool("canDoCombo", false);
 
             if (lastAttack == weapon.OH_Light_Attack_1)
             {
-                animatorDataHandler.PlayTargetAnimation(weapon.OH_Light_Attack_2, true);
+                animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_2, true);
                 lastAttack = weapon.OH_Light_Attack_2;
             }
             else if (lastAttack == weapon.OH_Light_Attack_2)
             {
-                animatorDataHandler.PlayTargetAnimation(weapon.OH_Light_Attack_3, true);
+                animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_3, true);
                 lastAttack = weapon.OH_Light_Attack_2;
             }
         }
@@ -55,9 +55,9 @@ public class PlayerAttacker : MonoBehaviour
     {
         weaponSlotManager.attackingWeapon = weapon;
 
-        if (animatorDataHandler.animator.GetBool("isInteracting") == true) return;
+        if (animatorHandler.animator.GetBool("isInteracting") == true) return;
 
-        animatorDataHandler.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
+        animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
         lastAttack = weapon.OH_Light_Attack_1;
     }
 
@@ -65,9 +65,9 @@ public class PlayerAttacker : MonoBehaviour
     {
         weaponSlotManager.attackingWeapon = weapon;
 
-        if (animatorDataHandler.animator.GetBool("isInteracting") == true) return;
+        if (animatorHandler.animator.GetBool("isInteracting") == true) return;
 
-        animatorDataHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
+        animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
         lastAttack = weapon.OH_Heavy_Attack_1;
     }
 }

@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
    [SerializeField] private AnimatorDataHandler animatorDataHandler;
     private GameObject mainCamera;
     public Transform lookat;
-    public new Rigidbody rigidBody;
+    public Rigidbody rigidBody;
 
     [Header("Movement")]
     public float moveSpeed = 5;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -15.0f;
     public float jumpTimeout = 0.5f; // Change it to jump Cooldown
     public float verticalVelocity;
-    private float terminalVelocity = 53.0f;
+    //private float terminalVelocity = 53.0f;
 
     // timeout deltatime
     private float jumpTimeoutDelta;
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Crouching")]
     public float crouchSpeed;
     public float crouchHeight = 0.5f;
-    private float standingHeight = 2f;
+    //private float standingHeight = 2f;
     public bool isToggle = true;
 
     [Header("Camera")]
