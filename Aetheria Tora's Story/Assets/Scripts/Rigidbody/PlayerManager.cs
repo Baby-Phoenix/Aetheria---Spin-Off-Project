@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
         isSprinting = inputHandler.shiftInput;
 
         inputHandler.HandleAttackInput(delta);
+        inputHandler.HandleQuickSlotsInput();
     }
 
     void FixedUpdate()

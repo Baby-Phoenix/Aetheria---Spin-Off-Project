@@ -1171,10 +1171,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7532928446494052977}
   m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_SpeedParameter: charVelX
+  m_MirrorParameter: isInteracting
+  m_CycleOffsetParameter: charVelX
+  m_TimeParameter: charVelX
 --- !u!1101 &2863365978757977935
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

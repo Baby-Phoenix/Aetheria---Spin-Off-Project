@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class RangedEnemyLocomotionManager : MonoBehaviour
 {
     RangedEnemyManager rangedEnemyManager;
-    EnemyAnimatorHandler enemyAnimatorHandler;
+    EnemyAnimatorManager enemyAnimatorHandler;
     NavMeshAgent navmeshAgent;
 
     public CharacterStats currentTarget;
@@ -18,7 +18,7 @@ public class RangedEnemyLocomotionManager : MonoBehaviour
     private void Awake()
     {
         rangedEnemyManager = GetComponent<RangedEnemyManager>();
-        enemyAnimatorHandler = GetComponent<EnemyAnimatorHandler>();
+        enemyAnimatorHandler = GetComponent<EnemyAnimatorManager>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
     }
 

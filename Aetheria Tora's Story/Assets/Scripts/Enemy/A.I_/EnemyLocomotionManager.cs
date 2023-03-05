@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.XR;
 
 public class EnemyLocomotionManager : MonoBehaviour
 {
     EnemyManager enemyManager;
-    EnemyAnimatorHandler enemyAnimatorHandler;
+    EnemyAnimatorManager enemyAnimatorManager;
     NavMeshAgent navmeshAgent;
-    AnimatorDataHandler enemyAnimatorDataHandler;
-    public CharacterController enemyCharacterController;
+    public Rigidbody enemyRigidBody;
+
     public CharacterStats currentTarget;
     public LayerMask detectionLayer;
+
+
     public float distanceFromTarget;
     public float stoppingDistance = 1;
 
@@ -21,26 +24,33 @@ public class EnemyLocomotionManager : MonoBehaviour
 
     private void Awake()
     {
-        enemyAnimatorDataHandler = GetComponent<AnimatorDataHandler>();
         enemyManager = GetComponent<EnemyManager>();
-        enemyAnimatorHandler = GetComponent<EnemyAnimatorHandler>();
+        enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
-        enemyCharacterController = GetComponent<CharacterController>();
+        enemyRigidBody = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
         navmeshAgent.enabled = false;
+        enemyRigidBody.isKinematic = false;
+
+        
+    }
+
+    private void Update()
+    {
+        navmeshAgent.stoppingDistance = stoppingDistance + 1;
     }
 
     public void HandleDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
-
+        
         for (int i = 0; i < colliders.Length; i++)
         {
-            CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
-
+            CharacterStats characterStats = colliders[i].transform.GetComponentInParent<CharacterStats>();
+            
             if (characterStats != null )
             {
                 Vector3 targetDirection = characterStats.transform.position- transform.position;
@@ -65,7 +75,7 @@ public class EnemyLocomotionManager : MonoBehaviour
 
         if (enemyManager.isPerformingAction) 
         {
-            //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+            enemyAnimatorManager.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
             navmeshAgent.enabled = false;
         }
         else
@@ -74,18 +84,20 @@ public class EnemyLocomotionManager : MonoBehaviour
 
             if (distanceFromTarget > stoppingDistance)
             {
-                enemyCharacterController.Move(direction.normalized * speed * Time.deltaTime);
-                //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0.9f);
+                enemyAnimatorManager.animator.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
+
+                
+                
             }
             else if(distanceFromTarget <= stoppingDistance)
             {
                 
-                //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+                enemyAnimatorManager.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
             }
             
         }
 
-        HandleRotateToTarget();
+        HandleRotateTowardsTarget();
 
         navmeshAgent.transform.localPosition = Vector3.zero;
         navmeshAgent.transform.localRotation = Quaternion.identity;
@@ -109,7 +121,7 @@ public class EnemyLocomotionManager : MonoBehaviour
         //navmeshAgent.transform.localRotation = Quaternion.identity;
     }
 
-    public void HandleRotateToTarget()
+    public void HandleRotateTowardsTarget()
     {
         //Rotate manually
         if (enemyManager.isPerformingAction)
@@ -130,22 +142,21 @@ public class EnemyLocomotionManager : MonoBehaviour
         else
         {
             Vector3 relativeDirection = transform.InverseTransformDirection(navmeshAgent.desiredVelocity);
-            Vector3 targetVelocity = enemyCharacterController.velocity;
+            Vector3 targetVelocity = navmeshAgent.velocity;
 
             navmeshAgent.enabled = true;
             navmeshAgent.SetDestination(currentTarget.transform.position);
-            //enemyCharacterController.Move(targetVelocity);
-            //enemyAnimatorDataHandler.UpdateAnimatorValues(targetVelocity.x, targetVelocity.z);
+            enemyRigidBody.velocity = targetVelocity;
 
-            // Calculate the direction vector from the agent to the target
-            Vector3 direction = currentTarget.transform.position - navmeshAgent.transform.position;
-            direction.y = 0; // Ensure the direction is in the x-z plane only
+            //// Calculate the direction vector from the agent to the target
+            //Vector3 direction = currentTarget.transform.position - navmeshAgent.transform.position;
+            //direction.y = 0; // Ensure the direction is in the x-z plane only
 
-            // Calculate the rotation angle in the y-axis using Atan2 function
-            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            //// Calculate the rotation angle in the y-axis using Atan2 function
+            //float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
-            // Set the agent's rotation to the calculated angle in the y-axis
-            navmeshAgent.transform.rotation = Quaternion.Euler(0, angle, 0);
+            //// Set the agent's rotation to the calculated angle in the y-axis
+            //navmeshAgent.transform.rotation = Quaternion.Euler(0, angle, 0);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, navmeshAgent.transform.rotation, rotationSpeed / Time.deltaTime);
 

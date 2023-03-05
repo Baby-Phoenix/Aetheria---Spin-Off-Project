@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     EnemyLocomotionManager enemyLocomotionManager;
-    EnemyAnimatorHandler enemyAnimatorHandler;
-    AnimatorDataHandler enemyAnimatorDataHandler;
+    EnemyAnimatorManager enemyAnimatorManager;
+    AnimatorHandler enemyAnimatorHandler;
     public bool isPerformingAction;
 
     public EnemyAttackAction[] enemyAttacks;
@@ -23,8 +23,8 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
-        enemyAnimatorHandler = GetComponent<EnemyAnimatorHandler>();
-        enemyAnimatorDataHandler = GetComponent<AnimatorDataHandler>();
+        enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
+        enemyAnimatorHandler = GetComponentInChildren<AnimatorHandler>();
     }
 
     private void Update()
@@ -56,7 +56,7 @@ public class EnemyManager : MonoBehaviour
         {
             //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
             enemyLocomotionManager.ManualRotate();
-            //AttackTarget();
+            AttackTarget();
         }
     }
 
@@ -91,7 +91,7 @@ public class EnemyManager : MonoBehaviour
         {
             isPerformingAction = true;
             currentRecoveryTime = currentAttack.recoveryTime;
-            enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
             currentAttack = null;
         }
     }

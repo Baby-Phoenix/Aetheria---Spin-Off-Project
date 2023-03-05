@@ -62,7 +62,7 @@ public class InputHandler : MonoBehaviour
         HandleRollInput(delta);
         HandleJumpInput();
         //HandleAttackInput(delta);
-        HandleQuickSlotsInput();
+        //HandleQuickSlotsInput();
     }
 
     private void MoveInput(float delta)
@@ -130,7 +130,7 @@ public class InputHandler : MonoBehaviour
         
     }
 
-    private void HandleQuickSlotsInput()
+    public void HandleQuickSlotsInput()
     {
         inputActions.Player.ScrollUp.performed += i => scrollUp = true;
         inputActions.Player.ScrollDown.performed += i => scrollDown = true;
