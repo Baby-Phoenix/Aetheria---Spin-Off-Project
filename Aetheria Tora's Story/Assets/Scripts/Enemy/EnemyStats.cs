@@ -30,9 +30,9 @@ public class EnemyStats : CharacterStats
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    private int SetMaxHealthFromHealthLevel()
+    private float SetMaxHealthFromHealthLevel()
     {
-        maxHealth = healthLevel * 10;
+        maxHealth = healthLevel * 10f;
         return maxHealth;
     }
 
