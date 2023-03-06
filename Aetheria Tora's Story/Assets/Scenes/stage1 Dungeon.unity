@@ -5180,6 +5180,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -79.06201
       objectReference: {fileID: 0}
+    - target: {fileID: 6902850991424332798, guid: d865c66f8407ce34ca6cfebc2cf8a733,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -88.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902850991424332798, guid: d865c66f8407ce34ca6cfebc2cf8a733,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d865c66f8407ce34ca6cfebc2cf8a733, type: 3}
 --- !u!1 &1763204532
@@ -5479,7 +5489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862685608}
-  m_LocalRotation: {x: -0.00882832, y: 0.00000001721411, z: 1.5197758e-10, w: 0.999961}
+  m_LocalRotation: {x: -0.00882832, y: -0.00000001721411, z: -1.5197758e-10, w: 0.999961}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5765,7 +5775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913301620}
-  m_LocalRotation: {x: -0.0088283215, y: 0.00000003442822, z: 3.039552e-10, w: 0.999961}
+  m_LocalRotation: {x: -0.0088283215, y: -0.00000003442822, z: -3.039552e-10, w: 0.999961}
   m_LocalPosition: {x: -47.57, y: 117.7, z: -18.060001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
