@@ -109,12 +109,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""b6e5a84c-3079-4a4e-9f32-d516cd9b6766"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -231,7 +231,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""d10e4d66-dfb9-4a2e-a98b-0bea623c5d7c"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Tap(duration=0.5,pressPoint=0.75)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftClick"",
@@ -296,11 +296,11 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bbfac256-8c3f-4959-b5ec-cec847ccb2a9"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -392,7 +392,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_ScrollUp = m_Player.FindAction("ScrollUp", throwIfNotFound: true);
         m_Player_ScrollDown = m_Player.FindAction("ScrollDown", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_ResetRoll = m_Player.FindAction("ResetRoll", throwIfNotFound: true);
     }
 
@@ -462,7 +462,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_ScrollUp;
     private readonly InputAction m_Player_ScrollDown;
-    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_ResetRoll;
     public struct PlayerActions
     {
@@ -477,7 +477,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @ScrollUp => m_Wrapper.m_Player_ScrollUp;
         public InputAction @ScrollDown => m_Wrapper.m_Player_ScrollDown;
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @ResetRoll => m_Wrapper.m_Player_ResetRoll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -515,9 +515,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ScrollDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDown;
                 @ScrollDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDown;
                 @ScrollDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDown;
-                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @ResetRoll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
                 @ResetRoll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
                 @ResetRoll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
@@ -552,9 +552,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ScrollDown.started += instance.OnScrollDown;
                 @ScrollDown.performed += instance.OnScrollDown;
                 @ScrollDown.canceled += instance.OnScrollDown;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
                 @ResetRoll.started += instance.OnResetRoll;
                 @ResetRoll.performed += instance.OnResetRoll;
                 @ResetRoll.canceled += instance.OnResetRoll;
@@ -618,7 +618,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnScrollUp(InputAction.CallbackContext context);
         void OnScrollDown(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
         void OnResetRoll(InputAction.CallbackContext context);
     }
 }

@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         inputHandler.rightClickInput = false;
         inputHandler.scrollUp = false;
         inputHandler.scrollDown = false;
+        inputHandler.leftClickTapFlag = false;
 
         if (isInAir)
         {

@@ -18,15 +18,18 @@ public class InputHandler : MonoBehaviour
     public bool rightClickInput;
     public bool scrollUp;
     public bool scrollDown;
+    public bool reloadInput;
 
     public bool rollFlag;
     public bool sprintFlag;
     public bool comboFlag;
+    public bool leftClickTapFlag;
     public float rollInputTimer;
+    public float leftClickInputTimer;
 
-    InputControls inputActions;
+    public InputControls inputActions;
     PlayerAttacker playerAttacker;
-    PlayerInventory playerInventory;
+    public PlayerInventory playerInventory;
     PlayerManager playerManager;
 
     Vector2 movementInput;
@@ -61,6 +64,8 @@ public class InputHandler : MonoBehaviour
         MoveInput(delta);
         HandleRollInput(delta);
         HandleJumpInput();
+        HandleReload();
+        HandleRangedInput(delta);
         //HandleAttackInput(delta);
         //HandleQuickSlotsInput();
     }
@@ -77,6 +82,11 @@ public class InputHandler : MonoBehaviour
     public void HandleJumpInput()
     {
         spaceInput = inputActions.Player.Jump.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+    }
+
+    public void HandleReload()
+    {
+        reloadInput = inputActions.Player.Reload.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
     }
 
     private void HandleRollInput(float delta)
@@ -100,9 +110,36 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public void HandleRangedInput(float delta)
+    {
+        if (!playerInventory.rightWeapon.isMelee)
+        {
+            leftClickInput = inputActions.Player.LeftClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+            rightClickInput = inputActions.Player.RightClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+
+            if (leftClickInput)
+            {
+                //set a bool true
+                leftClickInputTimer += delta;
+                leftClickTapFlag = false;
+            }
+            else
+            {
+                if (leftClickInputTimer > 0 && leftClickInputTimer < 0.5f)
+                {
+                    leftClickInput = false;
+                    leftClickTapFlag = true;
+                }
+
+                leftClickInputTimer = 0;
+            }
+        }
+    }
+
     public void HandleAttackInput(float delta)
     {
-        if(playerInventory.rightWeapon.isMelee)
+
+        if (playerInventory.rightWeapon.isMelee)
         {
             inputActions.Player.LeftClick.performed += i => leftClickInput = true;
             inputActions.Player.RightClick.performed += i => rightClickInput = true;
