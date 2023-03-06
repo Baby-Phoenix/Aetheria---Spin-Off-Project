@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class PlayerManager : MonoBehaviour
         float delta = Time.deltaTime;
 
         isSprinting = inputHandler.shiftInput;
-
         inputHandler.HandleAttackInput(delta);
         inputHandler.HandleQuickSlotsInput();
+        playerLocomotion.HandleAiming(delta);
     }
 
     void FixedUpdate()
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         inputHandler.rightClickInput = false;
         inputHandler.scrollUp = false;
         inputHandler.scrollDown = false;
+        inputHandler.leftClickTapFlag = false;
 
         if (isInAir)
         {
