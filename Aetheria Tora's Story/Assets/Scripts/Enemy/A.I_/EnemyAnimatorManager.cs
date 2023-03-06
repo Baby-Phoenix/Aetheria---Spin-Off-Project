@@ -7,6 +7,8 @@ public class EnemyAnimatorManager : AnimatorManager
     EnemyLocomotionManager enemyLocomotionManager;
     //AnimatorDataHandler enemyAnimatorDataHandler;
 
+    [SerializeField] EnemyDamageCollider damageCollider;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -23,5 +25,15 @@ public class EnemyAnimatorManager : AnimatorManager
         Vector3 velocity = deltaPosition / delta;
         enemyLocomotionManager.enemyRigidBody.velocity = velocity;
         //enemyAnimatorDataHandler.UpdateAnimatorValues(velocity.x, velocity.z);
+    }
+
+    public void OpenDamageCollider()
+    {
+        damageCollider.EnableDamageCollider();
+    }
+
+    public void CloseDamageCollider()
+    {
+        damageCollider.DisableDamageCollider();
     }
 }
