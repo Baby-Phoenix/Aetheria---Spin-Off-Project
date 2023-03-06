@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     InputHandler inputHandler;
     public Animator anim;
     PlayerLocomotion playerLocomotion;
+    public Transform colliderCenter;
 
     public bool isInteracting;
 

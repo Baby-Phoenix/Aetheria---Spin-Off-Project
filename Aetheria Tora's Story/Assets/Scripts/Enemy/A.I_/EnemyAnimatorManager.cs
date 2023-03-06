@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class EnemyAnimatorManager : AnimatorManager
 {
     EnemyLocomotionManager enemyLocomotionManager;
     //AnimatorDataHandler enemyAnimatorDataHandler;
+
+    public GameObject bullet;
+    public Transform spawnPoint;
+    public float bulletSpeed;
 
     [SerializeField] EnemyDamageCollider damageCollider;
 
@@ -35,5 +41,18 @@ public class EnemyAnimatorManager : AnimatorManager
     public void CloseDamageCollider()
     {
         damageCollider.DisableDamageCollider();
+    }
+
+    public void Shoot()
+    {
+        GameObject clone = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+        Rigidbody rb = clone.GetComponentInChildren<Rigidbody>();
+
+        Vector3 direction = enemyLocomotionManager.currentTarget.transform.position - spawnPoint.position;
+        direction.y += 1;
+        direction.Normalize();
+        
+        rb.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+        Destroy(clone, 3);
     }
 }

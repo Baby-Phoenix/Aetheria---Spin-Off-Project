@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    EnemyLocomotionManager enemyLocomotionManager;
+    public EnemyLocomotionManager enemyLocomotionManager;
     EnemyAnimatorManager enemyAnimatorManager;
     AnimatorHandler enemyAnimatorHandler;
     public bool isPerformingAction;
@@ -46,9 +46,12 @@ public class EnemyManager : MonoBehaviour
         {
             enemyLocomotionManager.distanceFromTarget = Vector3.Distance(enemyLocomotionManager.currentTarget.transform.position, transform.position);
 
-            if(enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance + 5)
+            enemyLocomotionManager.HandleWarnNearbyEnemies();
+
+            if (enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance + 5)
             {
                 //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+                
                 enemyLocomotionManager.ManualRotate();
                 AttackTarget();
             }
@@ -61,6 +64,7 @@ public class EnemyManager : MonoBehaviour
         else if (enemyLocomotionManager.distanceFromTarget > enemyLocomotionManager.stoppingDistance) 
         {
             enemyLocomotionManager.HandleMoveToTarget();
+            
         }
         
         
