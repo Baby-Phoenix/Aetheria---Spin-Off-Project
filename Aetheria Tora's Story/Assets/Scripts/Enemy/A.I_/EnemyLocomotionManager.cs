@@ -14,6 +14,7 @@ public class EnemyLocomotionManager : MonoBehaviour
 
     public PlayerStats currentTarget;
     public LayerMask detectionLayer;
+    public LayerMask obstructionLayer;
 
 
     public float distanceFromTarget;
@@ -65,7 +66,12 @@ public class EnemyLocomotionManager : MonoBehaviour
 
                 if (viewableAngle > enemyManager.minimumDetectionAngle && viewableAngle < enemyManager.maximumDetectionAngle)
                 {
-                    currentTarget = characterStats;
+                    float distanceToTarget = Vector3.Distance(transform.position, characterStats.transform.position);
+
+                    //See if target is within eyesight
+                    if (!Physics.Raycast(transform.position, targetDirection, distanceToTarget, obstructionLayer))
+                        currentTarget = characterStats;
+
 
                 }
 
@@ -79,7 +85,7 @@ public class EnemyLocomotionManager : MonoBehaviour
     public void HandleWarnNearbyEnemies()
     {
         
-        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, detectionLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
