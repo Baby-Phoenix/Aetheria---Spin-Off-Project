@@ -125,7 +125,6 @@ public class InputHandler : MonoBehaviour
 
             if (leftClickInput)
             {
-                FindObjectOfType<AudioManager>().Play("Gun");
                 //set a bool true
                 leftClickInputTimer += delta;
                 leftClickTapFlag = false;

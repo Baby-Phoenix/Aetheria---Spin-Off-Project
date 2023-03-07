@@ -15,6 +15,7 @@ public class BulletDamage : MonoBehaviour
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
+        FindObjectOfType<AudioManager>().Play("Laser");
     }
 
 
