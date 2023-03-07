@@ -119,6 +119,7 @@ public class InputHandler : MonoBehaviour
 
             if (leftClickInput)
             {
+                FindObjectOfType<AudioManager>().Play("Gun");
                 //set a bool true
                 leftClickInputTimer += delta;
                 leftClickTapFlag = false;
@@ -147,6 +148,7 @@ public class InputHandler : MonoBehaviour
             //RB input handles the right hand weapon's light attack
             if (leftClickInput)
             {
+
                 if (playerManager.canDoCombo)
                 {
                     comboFlag = true;

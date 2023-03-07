@@ -147,6 +147,15 @@ public class AnimatorHandler : AnimatorManager
     {
         playerCollider.center = new Vector3(playerCollider.center.x, yPos, playerCollider.center.z);
     }
+
+    private void playerSwing()
+    {
+        FindObjectOfType<AudioManager>().Play("swing");
+    }
+    private void playerGetHit()
+    {
+        FindObjectOfType<AudioManager>().Play("GetHit");
+    }
 }
 
 
