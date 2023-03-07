@@ -23,6 +23,8 @@ public class PlayerManager : MonoBehaviour
         inputHandler = GetComponent<InputHandler>();
         anim = GetComponentInChildren<Animator>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -46,12 +48,16 @@ public class PlayerManager : MonoBehaviour
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
 
-        
+        playerLocomotion.WallChecker();
+        playerLocomotion.HandleClimbing(delta);
+        if (playerLocomotion.climbing) playerLocomotion.ClimbingMovement();
+
         playerLocomotion.HandleRollingAndSprinting(delta);
         playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         playerLocomotion.HandleJumping();
-    }
 
+        
+    }
     private void LateUpdate()
     {
         inputHandler.spaceInput = false;
