@@ -7,6 +7,8 @@ public class EnemyStats : CharacterStats
     public HealthBar healthBar;
     public Canvas canvas;
     EnemyManager enemyManager;
+    public bool hasBeenHit;
+    float hitTimer = 0;
 
     Animator animator;
 
@@ -15,12 +17,30 @@ public class EnemyStats : CharacterStats
         animator = GetComponentInChildren<Animator>();
         enemyManager = GetComponent<EnemyManager>();
     }
+
+    private void Update()
+    {
+        if (hitTimer > 1)
+        {
+            hasBeenHit = false;
+            hitTimer = 0;
+        }
+
+        if (hasBeenHit)
+        {
+            hitTimer += Time.deltaTime;
+        }
+        
+    }
+
     private void LateUpdate()
     {
         if (currentHealth <= 0/*animator.GetCurrentAnimatorStateInfo(1).IsName("DeathFront") && animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1 && !animator.IsInTransition(0)*/)
         {
             Destroy(gameObject);
         }
+
+        
     }
 
     void Start()
@@ -52,5 +72,6 @@ public class EnemyStats : CharacterStats
             //animator.Play("DeathFront");
             
         }
+        hasBeenHit = true;
     }
 }

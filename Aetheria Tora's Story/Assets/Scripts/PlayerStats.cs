@@ -14,7 +14,7 @@ public class PlayerStats : CharacterStats
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
 
-    AnimatorHandler animatorHandler;
+    public AnimatorHandler animatorHandler;
 
     private void Awake()
     {

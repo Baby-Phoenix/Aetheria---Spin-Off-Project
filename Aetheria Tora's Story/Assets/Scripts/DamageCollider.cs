@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    Collider damageCollider;
+    [SerializeField] Collider damageCollider;
 
     public int currentWeaponDamage = 25;
 
     private void Awake()
     {
-        damageCollider = GetComponent<Collider>();
+        //damageCollider = GetComponent<Collider>();
         damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
         damageCollider.enabled = false;
     }
+
 
     public void EnableDamageCollider()
     {
@@ -28,15 +29,15 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Player")
-        {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+        //if (collision.tag == "Player")
+        //{
+        //    PlayerStats playerStats = collision.GetComponent<PlayerStats>();
 
-            if (playerStats != null)
-            {
-                playerStats.TakeDamage(currentWeaponDamage);
-            }
-        }
+        //    if (playerStats != null)
+        //    {
+        //        playerStats.TakeDamage(currentWeaponDamage);
+        //    }
+        //}
 
         if (collision.tag == "Enemy")
         {
@@ -44,7 +45,10 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStats != null)
             {
-                enemyStats.TakeDamage(currentWeaponDamage);
+                if (!enemyStats.hasBeenHit)
+                {
+                    enemyStats.TakeDamage(currentWeaponDamage);
+                }
             }
         }
     }

@@ -8,11 +8,11 @@ using UnityEngine.InputSystem.XR;
 public class EnemyLocomotionManager : MonoBehaviour
 {
     EnemyManager enemyManager;
-    EnemyAnimatorManager enemyAnimatorManager;
+    public EnemyAnimatorManager enemyAnimatorManager;
     NavMeshAgent navmeshAgent;
     public Rigidbody enemyRigidBody;
 
-    public CharacterStats currentTarget;
+    public PlayerStats currentTarget;
     public LayerMask detectionLayer;
 
 
@@ -41,6 +41,11 @@ public class EnemyLocomotionManager : MonoBehaviour
     private void Update()
     {
         navmeshAgent.stoppingDistance = stoppingDistance + 1;
+
+        if(currentTarget != null && currentTarget.currentHealth <= 0 )
+        {
+            currentTarget = null;
+        }
     }
 
     public void HandleDetection()
@@ -49,9 +54,9 @@ public class EnemyLocomotionManager : MonoBehaviour
         
         for (int i = 0; i < colliders.Length; i++)
         {
-            CharacterStats characterStats = colliders[i].transform.GetComponentInParent<CharacterStats>();
+            PlayerStats characterStats = colliders[i].transform.GetComponentInParent<PlayerStats>();
             
-            if (characterStats != null )
+            if (characterStats != null && characterStats.currentHealth > 0)
             {
                 Vector3 targetDirection = characterStats.transform.position- transform.position;
                 float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
@@ -105,7 +110,7 @@ public class EnemyLocomotionManager : MonoBehaviour
 
     public void ManualRotate()
     {
-        if (!enemyManager.isPerformingAction)
+        if (!enemyManager.isPerformingAction || enemyManager.lastAttack.isAbleToRotate)
         {
             // Calculate the direction vector from the agent to the target
             Vector3 direction = currentTarget.transform.position - navmeshAgent.transform.position;

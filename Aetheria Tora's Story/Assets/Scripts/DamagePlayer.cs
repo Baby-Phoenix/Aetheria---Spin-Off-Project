@@ -10,7 +10,7 @@ public class DamagePlayer : MonoBehaviour
     {
         PlayerStats playerStats = other.GetComponent<PlayerStats>();
 
-        if (playerStats != null)
+        if (playerStats != null && playerStats.currentHealth > 0)
         {
             playerStats.TakeDamage(damage);
         }

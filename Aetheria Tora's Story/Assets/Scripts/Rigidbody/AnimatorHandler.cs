@@ -6,7 +6,7 @@ public class AnimatorHandler : AnimatorManager
 {
     PlayerManager playerManager;
     InputHandler inputHandler;
-    PlayerLocomotion playerLocomotion;
+    public PlayerLocomotion playerLocomotion;
     int vertical;
     int horizontal;
     public bool canRotate;

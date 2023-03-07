@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour
 
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
+    public EnemyAttackAction lastAttack;
+    
 
     [Header("A.E Settings")]
     public float detectionRadius = 20;
@@ -25,6 +27,7 @@ public class EnemyManager : MonoBehaviour
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
         enemyAnimatorHandler = GetComponentInChildren<AnimatorHandler>();
+        
     }
 
     private void Update()
@@ -42,6 +45,13 @@ public class EnemyManager : MonoBehaviour
         if(enemyLocomotionManager.currentTarget != null)
         {
             enemyLocomotionManager.distanceFromTarget = Vector3.Distance(enemyLocomotionManager.currentTarget.transform.position, transform.position);
+
+            if(enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance + 5)
+            {
+                //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
+                enemyLocomotionManager.ManualRotate();
+                AttackTarget();
+            }
         }
 
         if (enemyLocomotionManager.currentTarget == null)
@@ -52,12 +62,8 @@ public class EnemyManager : MonoBehaviour
         {
             enemyLocomotionManager.HandleMoveToTarget();
         }
-        else if(enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance)
-        {
-            //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
-            enemyLocomotionManager.ManualRotate();
-            AttackTarget();
-        }
+        
+        
     }
 
     private void HandleRecoveryTimer()
@@ -103,18 +109,20 @@ public class EnemyManager : MonoBehaviour
         enemyLocomotionManager.distanceFromTarget = Vector3.Distance(enemyLocomotionManager.currentTarget.transform.position, transform.position);
 
         int maxScore = 0;
-
+       
         for (int i = 0; i < enemyAttacks.Length; i++)
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-            if(enemyLocomotionManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
+           
+            if (enemyLocomotionManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && enemyLocomotionManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {
-                if(viewableAngle <= enemyAttackAction.maximumAttackAngle
+                
+                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
                     && viewableAngle >= enemyAttackAction.minimumAttackAngle)
                 {
                     maxScore += enemyAttackAction.attackScore;
+                    
                 }
             }
         }
@@ -140,10 +148,13 @@ public class EnemyManager : MonoBehaviour
                     if(temporaryScore > randomValue)
                     {
                         currentAttack = enemyAttackAction;
+                        lastAttack = currentAttack;
                     }
                 }
             }
         }
     }
     #endregion
+
+    
 }

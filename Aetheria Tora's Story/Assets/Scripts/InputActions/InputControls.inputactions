@@ -114,12 +114,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Reload",
                     "type": "Button",
                     "id": "b6e5a84c-3079-4a4e-9f32-d516cd9b6766",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -236,7 +236,7 @@
                     "name": "",
                     "id": "d10e4d66-dfb9-4a2e-a98b-0bea623c5d7c",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap(duration=0.5,pressPoint=0.75)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
@@ -301,11 +301,11 @@
                 {
                     "name": "",
                     "id": "bbfac256-8c3f-4959-b5ec-cec847ccb2a9",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

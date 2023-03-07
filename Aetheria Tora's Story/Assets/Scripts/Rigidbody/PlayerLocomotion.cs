@@ -23,6 +23,8 @@ public class PlayerLocomotion : MonoBehaviour
     public new Rigidbody rigidbody;
     public GameObject normalCamera;
 
+    private float weight = 0f;
+
     [Header("Ground & Air Detection Stats")]
     [SerializeField]
     float groundDetectionRayStartPoint = 0.5f;
@@ -38,7 +40,7 @@ public class PlayerLocomotion : MonoBehaviour
     float movementSpeed = 5;
     [SerializeField]
     float walkingSpeed = 1;
-    [SerializeField]
+    [SerializeField] 
     float sprintSpeed = 7;
     [SerializeField]
     float rotationSpeed = 10;
@@ -67,15 +69,26 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleAiming(float delta)
     {
-        Camera camera = cameraObject.gameObject.GetComponent<Camera>();
-        Vector3 mousePosition = new Vector3(inputHandler.mouseX, inputHandler.mouseY, 0);
+        //Camera camera = cameraObject.gameObject.GetComponent<Camera>();
+        //Vector3 mousePosition = new Vector3(inputHandler.mouseX, inputHandler.mouseY, 0);
 
-        Ray ray = camera.ScreenPointToRay(mousePosition);
+        //Ray ray = camera.ScreenPointToRay(mousePosition);
 
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, ignorePlayerMask))
+        //Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, ignorePlayerMask);
+        //aimObjectTransform.position = raycastHit.point;
+        
+
+        if (inputHandler.playerInventory.rightWeapon.isMelee)
         {
-            aimObjectTransform.position = raycastHit.point;
+            weight = 0;
         }
+
+        else if(!inputHandler.playerInventory.rightWeapon.isMelee)
+        {
+            weight = 1;
+        }
+
+        aimRig.weight = Mathf.Lerp(aimRig.weight, weight, delta * 20f);
     }
 
     private void HandleRotation(float delta)
