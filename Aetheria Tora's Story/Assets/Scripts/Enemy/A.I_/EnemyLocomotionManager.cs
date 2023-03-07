@@ -51,20 +51,43 @@ public class EnemyLocomotionManager : MonoBehaviour
     public void HandleDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
-        
+
         for (int i = 0; i < colliders.Length; i++)
         {
-            PlayerStats characterStats = colliders[i].transform.GetComponentInParent<PlayerStats>();
+            PlayerStats characterStats = colliders[i].transform.GetComponent<PlayerStats>();
             
+
+
             if (characterStats != null && characterStats.currentHealth > 0)
             {
-                Vector3 targetDirection = characterStats.transform.position- transform.position;
+                Vector3 targetDirection = characterStats.transform.position - transform.position;
                 float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-                if(viewableAngle > enemyManager.minimumDetectionAngle && viewableAngle < enemyManager.maximumDetectionAngle)
+                if (viewableAngle > enemyManager.minimumDetectionAngle && viewableAngle < enemyManager.maximumDetectionAngle)
                 {
                     currentTarget = characterStats;
+
                 }
+
+
+            }
+            
+
+        }
+    }
+
+    public void HandleWarnNearbyEnemies()
+    {
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            EnemyStats enemyStats = colliders[i].transform.GetComponent<EnemyStats>();
+        
+            if (enemyStats != null)
+            {
+                enemyStats.enemyManager.enemyLocomotionManager.currentTarget = currentTarget;
             }
         }
     }

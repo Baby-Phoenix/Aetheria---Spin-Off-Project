@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Aetheria Tora's Story/Assets/Prefabs.meta
+guid: d134271e762add744ba89070c457f869
+========
 guid: 0f4633900f95f994ab0c1179b11ec294
+>>>>>>>> 7970bb1ad1f2baff63b92c8440b7749e8b05349a:Aetheria Tora's Story/Assets/Animations/Enemy/Melee.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

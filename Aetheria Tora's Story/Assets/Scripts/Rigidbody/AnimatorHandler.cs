@@ -6,6 +6,7 @@ public class AnimatorHandler : AnimatorManager
 {
     PlayerManager playerManager;
     InputHandler inputHandler;
+    CapsuleCollider playerCollider;
     public PlayerLocomotion playerLocomotion;
     int vertical;
     int horizontal;
@@ -14,6 +15,7 @@ public class AnimatorHandler : AnimatorManager
     public void Initialize()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+        playerCollider = GetComponentInParent<CapsuleCollider>();
         animator = GetComponent<Animator>();
         inputHandler = GetComponentInParent<InputHandler>();
         playerLocomotion = GetComponentInParent<PlayerLocomotion>();
@@ -135,69 +137,16 @@ public class AnimatorHandler : AnimatorManager
         Vector3 velocity = deltaPosition / delta;
         playerLocomotion.rigidbody.velocity = velocity;
     }
+
+    private void SetColliderHeight(float height)
+    {
+        playerCollider.height = height;
+    }
+
+    private void SetColliderPosY(float yPos)
+    {
+        playerCollider.center = new Vector3(playerCollider.center.x, yPos, playerCollider.center.z);
+    }
 }
 
 
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class AnimatorHandler : AnimatorManager
-//{
-//    [SerializeField] InputHandler inputHandler;
-//    [SerializeField] PlayerLocomotion playerLocomotion;
-
-//    private void Start()
-//    {
-//        animator = GetComponent<Animator>();
-//        inputHandler = GetComponentInParent<InputHandler>();
-//        playerLocomotion = GetComponentInParent<PlayerLocomotion>();
-//    }
-
-
-
-//    public void UpdateAnimatorValues(string valuex, string valuez, float horizontalMovement, float verticalMovement, bool isSprinting)
-//    {
-//        if (isSprinting)
-//        {
-//            verticalMovement *= 2;
-//            horizontalMovement *= 2;
-//        }
-//        animator.SetFloat(valuex, horizontalMovement, 0.1f, Time.deltaTime);
-//        animator.SetFloat(valuez, verticalMovement, 0.1f, Time.deltaTime);
-//    }
-
-//    private void OnAnimatorMove()
-//    {
-//        if (!inputHandler.isInteracting)
-//            return;
-
-//        float delta = Time.deltaTime;
-//        playerLocomotion.rigidBody.drag = 0;
-//        Vector3 deltaPosition = animator.deltaPosition;
-//        deltaPosition.y = 0;
-//        Vector3 velocity = deltaPosition / delta;
-//        playerLocomotion.rigidBody.velocity = velocity;
-//    }
-
-//    public void UpdateRollAnimatorValues(float horizontalMovement, float verticalMovement)
-//    {
-//        animator.SetFloat("rollX", horizontalMovement);
-//        animator.SetFloat("rollZ", verticalMovement);
-//    }
-
-//    public Vector2 GetAnimatorValues(string valuex, string valuez)
-//    {
-//        return new Vector2(animator.GetFloat(valuex), animator.GetFloat(valuez));
-//    }
-
-//    public void EnableCombo()
-//    {
-//        animator.SetBool("canDoCombo", true);
-//    }
-
-//    public void DisableCombo()
-//    {
-//        animator.SetBool("canDoCombo", false);
-//    }
-//}

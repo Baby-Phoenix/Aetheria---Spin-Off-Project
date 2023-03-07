@@ -6,7 +6,8 @@ public class EnemyStats : CharacterStats
 {
     public HealthBar healthBar;
     public Canvas canvas;
-    EnemyManager enemyManager;
+    public EnemyManager enemyManager;
+    public Vector3 originalPos;
     public bool hasBeenHit;
     float hitTimer = 0;
 
@@ -16,6 +17,7 @@ public class EnemyStats : CharacterStats
     {
         animator = GetComponentInChildren<Animator>();
         enemyManager = GetComponent<EnemyManager>();
+        originalPos = transform.localPosition;
     }
 
     private void Update()
@@ -37,7 +39,13 @@ public class EnemyStats : CharacterStats
     {
         if (currentHealth <= 0/*animator.GetCurrentAnimatorStateInfo(1).IsName("DeathFront") && animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1 && !animator.IsInTransition(0)*/)
         {
-            Destroy(gameObject);
+            currentHealth = maxHealth;
+            enemyManager.enemyLocomotionManager.currentTarget = null;
+            enemyManager.enabled = true;
+            canvas.enabled = true;
+            transform.localPosition = originalPos;
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         
@@ -50,9 +58,9 @@ public class EnemyStats : CharacterStats
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    private int SetMaxHealthFromHealthLevel()
+    private float SetMaxHealthFromHealthLevel()
     {
-        maxHealth = healthLevel * 10;
+        maxHealth = healthLevel * 10f;
         return maxHealth;
     }
 
