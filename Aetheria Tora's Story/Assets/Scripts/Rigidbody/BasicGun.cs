@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BasicGun : MonoBehaviour
@@ -87,6 +88,17 @@ public class BasicGun : MonoBehaviour
         if(Physics.Raycast(ray, out raycastHit))
         {
             tracer.transform.position = raycastHit.point;
+
+            if(raycastHit.transform.gameObject.tag=="Enemy")
+            {
+                EnemyStats enemyStats = raycastHit.transform.GetComponent<EnemyStats>();
+
+                if(enemyStats != null)
+                {
+                    enemyStats.TakeDamage(3);
+                    enemyStats.enemyManager.enemyLocomotionManager.currentTarget = GetComponent<PlayerStats>();
+                }
+            }
         }
 
         bulletsLeft--;

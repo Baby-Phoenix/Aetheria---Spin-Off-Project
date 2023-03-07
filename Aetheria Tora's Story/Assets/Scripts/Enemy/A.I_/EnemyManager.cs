@@ -53,7 +53,17 @@ public class EnemyManager : MonoBehaviour
                 //enemyAnimatorDataHandler.UpdateAnimatorValues("charVelX", "charVelZ", 0, 0);
                 
                 enemyLocomotionManager.ManualRotate();
-                AttackTarget();
+                Vector3 targetDirection = enemyLocomotionManager.currentTarget.transform.position - transform.position;
+                float distanceToTarget = Vector3.Distance(transform.position, enemyLocomotionManager.currentTarget.transform.position);
+                if (!Physics.Raycast(transform.position, targetDirection, distanceToTarget, enemyLocomotionManager.obstructionLayer))
+                {
+                    AttackTarget();
+                    enemyLocomotionManager.stoppingDistance = enemyLocomotionManager.originalStoppingDistance;
+                }
+                else
+                {
+                    enemyLocomotionManager.stoppingDistance = 1;
+                }
             }
         }
 
