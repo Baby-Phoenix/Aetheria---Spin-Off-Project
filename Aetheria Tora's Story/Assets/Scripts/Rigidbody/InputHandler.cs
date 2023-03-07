@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour
 {
@@ -32,6 +32,9 @@ public class InputHandler : MonoBehaviour
     public PlayerInventory playerInventory;
     PlayerManager playerManager;
     PlayerStats playerStats;
+
+    public Image pistolImage;
+    public Image spearImage;
 
     Vector2 movementInput;
     Vector2 cameraInput;
@@ -189,14 +192,17 @@ public class InputHandler : MonoBehaviour
 
         if (playerInventory.rightWeapon.isMelee)
         {
-
             playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
 
+            spearImage.enabled = true;
+            pistolImage.enabled = false;
         }
         else
         {
-
             playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
+
+            spearImage.enabled = false;
+            pistolImage.enabled = true;
         }
     }
 }
