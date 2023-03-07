@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.UI;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -24,6 +25,21 @@ public class PlayerLocomotion : MonoBehaviour
     public GameObject normalCamera;
 
     private float weight = 0f;
+
+    [Header("Climbing")]
+    [SerializeField] private LayerMask whatIsWall;
+    public float climbSpeed;
+    public float maxClimbTime;
+    private float climbTimer;
+    public bool climbing;
+
+    public float detectionLength;
+    public float sphereCastRadius;
+    public float maxWallLookAngle;
+    public float wallLookAngle;
+
+    private RaycastHit frontWallHit;
+    private bool wallFront;
 
     [Header("Ground & Air Detection Stats")]
     [SerializeField]
@@ -191,8 +207,6 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
-    
-
     public void HandleFalling(float delta, Vector3 moveDirection)
     {
         playerManager.isGrounded = false;
@@ -288,6 +302,53 @@ public class PlayerLocomotion : MonoBehaviour
         //}
 
     }
+
+    #region climbing
+
+    public void HandleClimbing(float delta)
+    {
+        print(inputHandler.vertical);
+        if (wallFront && inputHandler.vertical > 0 && wallLookAngle < maxWallLookAngle)
+        {
+            if (!climbing && climbTimer > 0) StartClimbing();
+
+            if (climbTimer > 0) climbTimer -= delta;
+
+            if (climbTimer <= 0) StopClimbing();
+        }
+
+        else
+        {
+            if (climbing) StopClimbing();
+        }
+    }
+
+    public void WallChecker()
+    {
+        wallFront = Physics.SphereCast(myTransform.position, sphereCastRadius, myTransform.forward, out frontWallHit, detectionLength, whatIsWall);
+        wallLookAngle = Vector3.Angle(myTransform.forward, -frontWallHit.normal);
+
+        if (playerManager.isGrounded)
+        {
+            climbTimer = maxClimbTime;
+        }
+    }
+
+    public void StartClimbing()
+    {
+        climbing = true;
+    }
+
+    public void ClimbingMovement()
+    {
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, climbSpeed, rigidbody.velocity.z);
+    }
+
+    public void StopClimbing()
+    {
+        climbing = false;
+    }
+    #endregion
 
     #endregion
 }
