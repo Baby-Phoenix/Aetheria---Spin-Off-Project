@@ -68,6 +68,7 @@ public class BasicGun : MonoBehaviour
 
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0) 
         {
+            FindObjectOfType<AudioManager>().Play("Gun");
             bulletsShot = 0;
 
             Shoot();
@@ -119,6 +120,7 @@ public class BasicGun : MonoBehaviour
     private void Reload()
     {
         reloading = true;
+        FindObjectOfType<AudioManager>().Play("Reload");
         Invoke("ReloadFinished", reloadTime);
     }
 
