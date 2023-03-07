@@ -25,7 +25,7 @@ public class PlayerStats : CharacterStats
     {
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
 
         crystalSoulCount = 3;
         soulFragmentCount = 0;
@@ -33,14 +33,14 @@ public class PlayerStats : CharacterStats
 
         maxStamina = SetMaxStaminaFromStaminaLevel();
         currentStamina = maxStamina;
-        //staminaBar.SetMaxStamina(maxStamina);
+        staminaBar.SetMaxStamina(maxStamina);
     }
 
     public void Update()
     {
-        CSCountText.text = crystalSoulCount.ToString();
-        SFCountText.text = soulFragmentCount.ToString();
-        CCCountText.text = cleansingCrystalCount.ToString();
+        //CSCountText.text = crystalSoulCount.ToString();
+        //SFCountText.text = soulFragmentCount.ToString();
+        //CCCountText.text = cleansingCrystalCount.ToString();
     }
 
     public float SetMaxHealthFromHealthLevel()

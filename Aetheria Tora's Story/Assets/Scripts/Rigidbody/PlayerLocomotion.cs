@@ -307,7 +307,6 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleClimbing(float delta)
     {
-        print(inputHandler.vertical);
         if (wallFront && inputHandler.vertical > 0 && wallLookAngle < maxWallLookAngle)
         {
             if (!climbing && climbTimer > 0) StartClimbing();

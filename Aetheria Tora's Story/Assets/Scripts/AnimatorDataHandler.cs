@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Windows;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class AnimatorDataHandler : AnimatorManager
 {
