@@ -31,6 +31,7 @@ public class InputHandler : MonoBehaviour
     PlayerAttacker playerAttacker;
     public PlayerInventory playerInventory;
     PlayerManager playerManager;
+    PlayerStats playerStats;
 
     public Image pistolImage;
     public Image spearImage;
@@ -43,6 +44,7 @@ public class InputHandler : MonoBehaviour
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     public void OnEnable()
@@ -94,12 +96,13 @@ public class InputHandler : MonoBehaviour
 
     private void HandleRollInput(float delta)
     {
-        shiftInput = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+        shiftInput = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
         
         if (shiftInput)
         {
             rollInputTimer += delta;
             sprintFlag = true;
+            playerStats.TakeStaminaDamage(1);
         }
         else
         {
@@ -122,6 +125,7 @@ public class InputHandler : MonoBehaviour
 
             if (leftClickInput)
             {
+                FindObjectOfType<AudioManager>().Play("Gun");
                 //set a bool true
                 leftClickInputTimer += delta;
                 leftClickTapFlag = false;
@@ -150,6 +154,7 @@ public class InputHandler : MonoBehaviour
             //RB input handles the right hand weapon's light attack
             if (leftClickInput)
             {
+
                 if (playerManager.canDoCombo)
                 {
                     comboFlag = true;
@@ -162,8 +167,9 @@ public class InputHandler : MonoBehaviour
                 }
             }
 
-            if (rightClickInput)
+            if (rightClickInput && playerStats.staminaBar.slider.value > 5) 
             {
+
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
             }
         }

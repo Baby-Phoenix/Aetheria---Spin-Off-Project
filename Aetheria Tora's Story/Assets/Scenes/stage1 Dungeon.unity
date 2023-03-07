@@ -2025,9 +2025,9 @@ GameObject:
   m_Component:
   - component: {fileID: 315614499}
   - component: {fileID: 315614498}
-  - component: {fileID: 315614497}
   - component: {fileID: 315614496}
   - component: {fileID: 315614495}
+  - component: {fileID: 315614500}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2102,14 +2102,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!81 &315614497
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315614494}
-  m_Enabled: 1
 --- !u!20 &315614498
 Camera:
   m_ObjectHideFlags: 0
@@ -2168,6 +2160,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 82
   m_LocalEulerAnglesHint: {x: -0.918, y: -0.312, z: 0}
+--- !u!81 &315614500
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315614494}
+  m_Enabled: 1
 --- !u!1 &322165164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9158743094094176133, guid: d865c66f8407ce34ca6cfebc2cf8a733,
@@ -9712,11 +9712,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea264659091d984f8e52161dcc03e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound:
-  - name: Player Attack
+  sounds:
+  - name: swing
     clip: {fileID: 8300000, guid: c4f5cb86ff55a3c44a01a126bf06bd5a, type: 3}
-    volume: 0.518
+    volume: 1
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BGM
+    clip: {fileID: 8300000, guid: 6d864354e587aa44a9c29923b2fa8177, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Gun
+    clip: {fileID: 8300000, guid: 8af45719eee8d85428938870a1c60757, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetHit
+    clip: {fileID: 8300000, guid: 24eb7c059a8d64248a8c90382cf75956, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1596230007
 Transform:
   m_ObjectHideFlags: 0

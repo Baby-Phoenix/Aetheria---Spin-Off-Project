@@ -19,6 +19,7 @@ public class EnemyLocomotionManager : MonoBehaviour
 
     public float distanceFromTarget;
     public float stoppingDistance = 1;
+    public float originalStoppingDistance;
 
     public float rotationSpeed = 15;
     public float speed = 1;
@@ -35,8 +36,9 @@ public class EnemyLocomotionManager : MonoBehaviour
     {
         navmeshAgent.enabled = false;
         enemyRigidBody.isKinematic = false;
+        originalStoppingDistance = stoppingDistance;
 
-        
+
     }
 
     private void Update()
