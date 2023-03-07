@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    public int healthLevel = 10;
-    public int maxHealth;
-    public int currentHealth;
+    public float healthLevel = 10f;
+    public float maxHealth;
+    public float currentHealth;
+
+    public int crystalSoulCount;
+    public int soulFragmentCount;
+    public int cleansingCrystalCount;
 
     public int staminaLevel = 10;
     public int maxStamina;
