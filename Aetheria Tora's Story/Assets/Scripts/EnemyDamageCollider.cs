@@ -53,7 +53,6 @@ public class EnemyDamageCollider : MonoBehaviour
 
                 if (currentClipName == "metarig_melee")
                 {
-                    print("here");
                     PushBack();
                 }
             }

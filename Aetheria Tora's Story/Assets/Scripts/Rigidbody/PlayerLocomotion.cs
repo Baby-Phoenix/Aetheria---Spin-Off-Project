@@ -211,7 +211,7 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 animatorHandler.PlayTargetAnimation("Falling", true);
             }
-
+            
             rigidbody.AddForce(-Vector3.up * fallingSpeed);
             rigidbody.AddForce(moveDirection * fallingSpeed / 9f);
         }
