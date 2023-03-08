@@ -44,6 +44,9 @@ public class EnemyDamageCollider : MonoBehaviour
         {
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
 
+            if (playerStats.playerManager.isInvulnerable)
+                return;
+
             if (playerStats != null && playerStats.currentHealth > 0)
             {
                 playerStats.TakeDamage(currentWeaponDamage);
