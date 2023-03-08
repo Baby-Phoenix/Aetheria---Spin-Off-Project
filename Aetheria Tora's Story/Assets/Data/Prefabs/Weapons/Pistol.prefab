@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &995394647187588252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8171720129144500025}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8171939195130348333}
+  m_Layer: 0
+  m_Name: 'MuzzleFlash01 (Missing Prefab with guid: ad2ab49d0a2a17148bd51c93d977bdbc)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8171939195130348333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8171720129144500025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995394647187588252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9135468754862831370}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5147205877491107976
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,15 +56,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147205877491107976}
-  m_LocalRotation: {x: 0.5155804, y: 0.5538245, z: 0.4757516, w: 0.4484594}
-  m_LocalPosition: {x: -0.1917, y: 0.015, z: 0.0461}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: 0.94656, y: 0.28990427, z: 0.10093973, w: 0.098948464}
+  m_LocalPosition: {x: -0.00138, y: -0.00234, z: 0.00834}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 248697973962589776}
   m_Father: {fileID: 9135468754862831370}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -3.7, y: 98.36, z: 89.1}
+  m_LocalEulerAnglesHint: {x: 7.4, y: 165.49, z: 145}
 --- !u!1 &8470255787270679984
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,9 +261,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
---- !u!4 &8171939195130348333 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 8171720129144500025}
-  m_PrefabAsset: {fileID: 0}
