@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : CharacterStats
 {
+    public PlayerManager playerManager;
     public HealthBar healthBar;
     public StaminaBar staminaBar;
     public Text CSCountText;
@@ -13,11 +14,13 @@ public class PlayerStats : CharacterStats
 
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
+    private float getHitAnimationTimer = 0;
 
     public AnimatorHandler animatorHandler;
 
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
     }
 
@@ -38,6 +41,8 @@ public class PlayerStats : CharacterStats
 
     public void Update()
     {
+        getHitAnimationTimer += Time.deltaTime;
+
         //CSCountText.text = crystalSoulCount.ToString();
         //SFCountText.text = soulFragmentCount.ToString();
         //CCCountText.text = cleansingCrystalCount.ToString();
@@ -61,7 +66,11 @@ public class PlayerStats : CharacterStats
 
         healthBar.SetCurrentHealth(currentHealth);
 
-        animatorHandler.PlayTargetAnimation("TakeDamageFront", true);
+        if (getHitAnimationTimer > 2)
+        {
+            animatorHandler.PlayTargetAnimation("TakeDamageFront", true);
+            getHitAnimationTimer = 0;
+        }
 
         if (currentHealth <= 0f)
         {

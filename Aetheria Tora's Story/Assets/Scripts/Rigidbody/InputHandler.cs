@@ -32,6 +32,7 @@ public class InputHandler : MonoBehaviour
     public PlayerInventory playerInventory;
     PlayerManager playerManager;
     PlayerStats playerStats;
+    AnimatorHandler animatorHandler;
 
     public Image pistolImage;
     public Image spearImage;
@@ -45,6 +46,7 @@ public class InputHandler : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
     }
 
     public void OnEnable()
@@ -109,6 +111,7 @@ public class InputHandler : MonoBehaviour
             if (rollInputTimer > 0 && rollInputTimer < 0.5f)
             {
                 sprintFlag = false;
+                animatorHandler.EnableIsInvulnerable();
                 rollFlag = true;
             }
 

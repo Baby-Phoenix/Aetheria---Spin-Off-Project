@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public bool isInAir;
     public bool isGrounded;
     public bool canDoCombo;
+    public bool isInvulnerable;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
+        isInvulnerable = anim.GetBool("isInvulnerable");
         anim.SetBool("isInAir", isInAir);
 
         inputHandler.TickInput(delta);
