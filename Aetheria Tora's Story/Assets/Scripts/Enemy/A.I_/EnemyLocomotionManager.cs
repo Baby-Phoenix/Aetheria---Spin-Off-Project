@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -8,6 +9,7 @@ using UnityEngine.InputSystem.XR;
 public class EnemyLocomotionManager : MonoBehaviour
 {
     EnemyManager enemyManager;
+    EnemyStats enemyStats;
     public EnemyAnimatorManager enemyAnimatorManager;
     NavMeshAgent navmeshAgent;
     public Rigidbody enemyRigidBody;
@@ -30,6 +32,7 @@ public class EnemyLocomotionManager : MonoBehaviour
         enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyRigidBody = GetComponent<Rigidbody>();
+        enemyStats = GetComponent<EnemyStats>();
     }
 
     private void Start()
@@ -38,16 +41,39 @@ public class EnemyLocomotionManager : MonoBehaviour
         enemyRigidBody.isKinematic = false;
         originalStoppingDistance = stoppingDistance;
 
+    }
 
+    private void FixedUpdate()
+    {
+        //HandleGoBack(5);
     }
 
     private void Update()
     {
         navmeshAgent.stoppingDistance = stoppingDistance + 1;
 
-        if(currentTarget != null && currentTarget.currentHealth <= 0 )
+        
+
+        if (currentTarget != null && currentTarget.currentHealth <= 0 )
         {
             currentTarget = null;
+        }
+    }
+
+
+    public void HandleGoBack(float distance)
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, enemyStats.originalPos);
+
+        if (distanceToTarget >= distance)
+        {
+            
+            enemyManager.enemyLocomotionManager.currentTarget = null;
+            navmeshAgent.SetDestination(enemyStats.originalPos);
+            distanceFromTarget = -5;
+            enemyAnimatorManager.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+            navmeshAgent.enabled = false;
+            transform.localPosition = enemyStats.originalPos;
         }
     }
 
@@ -100,13 +126,13 @@ public class EnemyLocomotionManager : MonoBehaviour
         }
     }
 
-    public void HandleMoveToTarget()
+    public void HandleMoveToTarget(Vector3 pos)
     {
         //if (enemyManager.isPerformingAction)
         //    return;
         
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
-        distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+        distanceFromTarget = Vector3.Distance(/*currentTarget.transform.position*/pos, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
         if (enemyManager.isPerformingAction) 
@@ -133,7 +159,7 @@ public class EnemyLocomotionManager : MonoBehaviour
             
         }
 
-        HandleRotateTowardsTarget();
+        HandleRotateTowardsTarget(pos);
 
         navmeshAgent.transform.localPosition = Vector3.zero;
         navmeshAgent.transform.localRotation = Quaternion.identity;
@@ -157,12 +183,12 @@ public class EnemyLocomotionManager : MonoBehaviour
         //navmeshAgent.transform.localRotation = Quaternion.identity;
     }
 
-    public void HandleRotateTowardsTarget()
+    public void HandleRotateTowardsTarget(Vector3 pos)
     {
         //Rotate manually
         if (enemyManager.isPerformingAction)
         {
-            Vector3 direction = currentTarget.transform.position - transform.position;
+            Vector3 direction = /*currentTarget.transform.position*/pos - transform.position;
             direction.y = 0;
             direction.Normalize();
 
@@ -181,7 +207,7 @@ public class EnemyLocomotionManager : MonoBehaviour
             Vector3 targetVelocity = navmeshAgent.velocity;
 
             navmeshAgent.enabled = true;
-            navmeshAgent.SetDestination(currentTarget.transform.position);
+            navmeshAgent.SetDestination(/*currentTarget.transform.position*/pos);
             enemyRigidBody.velocity = targetVelocity;
 
             //// Calculate the direction vector from the agent to the target

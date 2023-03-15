@@ -43,9 +43,9 @@ public class PlayerStats : CharacterStats
     {
         getHitAnimationTimer += Time.deltaTime;
 
-        //CSCountText.text = crystalSoulCount.ToString();
-        //SFCountText.text = soulFragmentCount.ToString();
-        //CCCountText.text = cleansingCrystalCount.ToString();
+        CSCountText.text = crystalSoulCount.ToString();
+        SFCountText.text = soulFragmentCount.ToString();
+        CCCountText.text = cleansingCrystalCount.ToString();
     }
 
     public float SetMaxHealthFromHealthLevel()

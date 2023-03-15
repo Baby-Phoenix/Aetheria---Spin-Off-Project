@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour
         }
         else if (enemyLocomotionManager.distanceFromTarget > enemyLocomotionManager.stoppingDistance) 
         {
-            enemyLocomotionManager.HandleMoveToTarget();
+            enemyLocomotionManager.HandleMoveToTarget(enemyLocomotionManager.currentTarget.transform.position);
             
         }
         

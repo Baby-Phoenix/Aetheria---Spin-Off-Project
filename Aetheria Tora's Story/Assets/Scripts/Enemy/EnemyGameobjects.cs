@@ -9,7 +9,6 @@ public class EnemyGameobjects : MonoBehaviour
     void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        print(enemies.Length);
     }
 
     private void Update()
