@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         playerLocomotion.HandleJumping();
 
-        
+
     }
     private void LateUpdate()
     {

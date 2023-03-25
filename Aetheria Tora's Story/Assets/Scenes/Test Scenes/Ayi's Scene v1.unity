@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6252,11 +6252,17 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
   healthBar: {fileID: 1644850864}
   canvas: {fileID: 1013745887}
+  enemyManager: {fileID: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  hasBeenHit: 0
 --- !u!95 &786894235
 Animator:
   serializedVersion: 5
@@ -6307,14 +6313,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e10ad440e5aeb438a25bc983c7de36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCharacterController: {fileID: 0}
+  enemyAnimatorManager: {fileID: 0}
+  enemyRigidBody: {fileID: 0}
   currentTarget: {fileID: 0}
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   distanceFromTarget: 0
   stoppingDistance: 1
+  originalStoppingDistance: 0
   rotationSpeed: 50
+  speed: 1
 --- !u!114 &786894238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6327,11 +6339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a99a01d4ed0d742a5a1cdf3e5e538a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   enemyAttacks:
   - {fileID: 11400000, guid: 0f82436e35dd463438da049ecb79b737, type: 2}
   - {fileID: 11400000, guid: 4d7a99478560d6849a4723b2a45933ad, type: 2}
   currentAttack: {fileID: 0}
+  lastAttack: {fileID: 0}
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
@@ -6362,7 +6376,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  CanRotate: 0
 --- !u!1 &799852497
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,16 +6548,18 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   aim: {x: 0, y: 0}
   jump: 0
-  sprint: 0
+  roll: 0
   crouch: 0
   leftClick: 0
   rightClick: 0
   scrollUp: 0
   scrollDown: 0
-  slide: 0
+  gun: {fileID: 0}
   isInteracting: 0
   canDoCombo: 0
   comboFlag: 0
+  onRollValue: 0
+  onRollTimer: 0
 --- !u!114 &833225099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6557,7 +6572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb5b6d70039cca4bb5db4a490835420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 833225096}
+  animatorDataHandler: {fileID: 0}
+  lookat: {fileID: 0}
+  rigidBody: {fileID: 0}
   moveSpeed: 0
   runSpeed: 5
   sprintSpeed: 5
@@ -6576,6 +6593,7 @@ MonoBehaviour:
     m_Bits: 72
   crouchSpeed: 5
   crouchHeight: 0.5
+  isToggle: 1
   sensX: 10
   sensY: 10
   rotationSmoothTime: 0.12
@@ -6612,7 +6630,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  CanRotate: 0
 --- !u!114 &833225103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6671,11 +6688,19 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  playerManager: {fileID: 0}
   healthBar: {fileID: 675249247}
   staminaBar: {fileID: 952298884}
+  CSCountText: {fileID: 0}
+  SFCountText: {fileID: 0}
+  CCCountText: {fileID: 0}
+  animatorHandler: {fileID: 0}
 --- !u!1 &857780279
 GameObject:
   m_ObjectHideFlags: 0

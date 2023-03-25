@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5472,11 +5472,18 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  playerManager: {fileID: 0}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  CSCountText: {fileID: 0}
+  SFCountText: {fileID: 0}
+  CCCountText: {fileID: 0}
   animatorHandler: {fileID: 0}
 --- !u!114 &1010331976
 MonoBehaviour:
@@ -5521,11 +5528,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  colliderCenter: {fileID: 0}
   isInteracting: 0
   isSprinting: 0
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
+  isInvulnerable: 0
 --- !u!114 &1010331979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5548,6 +5557,16 @@ MonoBehaviour:
   animatorHandler: {fileID: 0}
   rigidbody: {fileID: 0}
   normalCamera: {fileID: 0}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  climbSpeed: 0
+  maxClimbTime: 0
+  climbing: 0
+  detectionLength: 0
+  sphereCastRadius: 0
+  maxWallLookAngle: 0
+  wallLookAngle: 0
   groundDetectionRayStartPoint: 0.5
   minimumDistanceNeededToBeginFall: 1
   groundDirectionRayDistance: 0.2
@@ -5588,6 +5607,8 @@ MonoBehaviour:
   rollInputTimer: 0
   leftClickInputTimer: 0
   playerInventory: {fileID: 0}
+  pistolImage: {fileID: 0}
+  spearImage: {fileID: 0}
 --- !u!54 &1010331981
 Rigidbody:
   m_ObjectHideFlags: 0

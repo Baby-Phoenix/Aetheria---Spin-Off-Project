@@ -512,12 +512,16 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
   healthBar: {fileID: 5425680021366859245}
   canvas: {fileID: 5425680021500611312}
   enemyManager: {fileID: 0}
+  originalPos: {x: 0, y: 0, z: 0}
   hasBeenHit: 0
 --- !u!114 &5425680022344155994
 MonoBehaviour:
@@ -560,8 +564,12 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   distanceFromTarget: 0
   stoppingDistance: 15
+  originalStoppingDistance: 0
   rotationSpeed: 15
   speed: 1
 --- !u!114 &5425680022344155995

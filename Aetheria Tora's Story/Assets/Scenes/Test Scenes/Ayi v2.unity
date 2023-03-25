@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5654,6 +5654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 151575176}
+  playerLocomotion: {fileID: 0}
   canRotate: 0
 --- !u!95 &151575176
 Animator:
@@ -6779,11 +6780,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edbc8ccc5f6c4d42a15fa848c129a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimRig: {fileID: 0}
+  aimObjectTransform: {fileID: 0}
+  ignorePlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   moveDirection: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
   animatorHandler: {fileID: 0}
   rigidbody: {fileID: 0}
   normalCamera: {fileID: 0}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  climbSpeed: 0
+  maxClimbTime: 0
+  climbing: 0
+  detectionLength: 0
+  sphereCastRadius: 0
+  maxWallLookAngle: 0
+  wallLookAngle: 0
   groundDetectionRayStartPoint: 0.5
   minimumDistanceNeededToBeginFall: 1
   groundDirectionRayDistance: 0.2
@@ -6810,13 +6826,22 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  spaceInput: 0
   shiftInput: 0
   leftClickInput: 0
   rightClickInput: 0
+  scrollUp: 0
+  scrollDown: 0
+  reloadInput: 0
   rollFlag: 0
   sprintFlag: 0
   comboFlag: 0
+  leftClickTapFlag: 0
   rollInputTimer: 0
+  leftClickInputTimer: 0
+  playerInventory: {fileID: 0}
+  pistolImage: {fileID: 0}
+  spearImage: {fileID: 0}
 --- !u!54 &617158948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6876,11 +6901,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023e29c92fa0d5841b7e92cb2eb4b488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  colliderCenter: {fileID: 0}
   isInteracting: 0
   isSprinting: 0
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
+  isInvulnerable: 0
 --- !u!1 &629679164
 GameObject:
   m_ObjectHideFlags: 0
@@ -7339,11 +7367,17 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
   healthBar: {fileID: 1644850864}
   canvas: {fileID: 1013745887}
+  enemyManager: {fileID: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  hasBeenHit: 0
 --- !u!95 &786894235
 Animator:
   serializedVersion: 5
@@ -7394,13 +7428,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e10ad440e5aeb438a25bc983c7de36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCharacterController: {fileID: 0}
+  enemyAnimatorManager: {fileID: 0}
+  enemyRigidBody: {fileID: 0}
   currentTarget: {fileID: 0}
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   distanceFromTarget: 0
   stoppingDistance: 1
+  originalStoppingDistance: 0
   rotationSpeed: 50
   speed: 1
 --- !u!114 &786894238
@@ -7415,11 +7454,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a99a01d4ed0d742a5a1cdf3e5e538a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   enemyAttacks:
   - {fileID: 11400000, guid: 0f82436e35dd463438da049ecb79b737, type: 2}
   - {fileID: 11400000, guid: 4d7a99478560d6849a4723b2a45933ad, type: 2}
   currentAttack: {fileID: 0}
+  lastAttack: {fileID: 0}
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
@@ -7604,11 +7645,17 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
   healthBar: {fileID: 0}
   canvas: {fileID: 0}
+  enemyManager: {fileID: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  hasBeenHit: 0
 --- !u!1 &819840472
 GameObject:
   m_ObjectHideFlags: 0
@@ -7870,11 +7917,19 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+  crystalSoulCount: 0
+  soulFragmentCount: 0
+  cleansingCrystalCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  playerManager: {fileID: 0}
   healthBar: {fileID: 675249247}
   staminaBar: {fileID: 952298884}
+  CSCountText: {fileID: 0}
+  SFCountText: {fileID: 0}
+  CCCountText: {fileID: 0}
+  animatorHandler: {fileID: 0}
 --- !u!136 &833225108
 CapsuleCollider:
   m_ObjectHideFlags: 0

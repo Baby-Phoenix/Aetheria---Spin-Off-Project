@@ -551,7 +551,7 @@ namespace JohnStairs.RCC.Inputs
                 {
                     ""name"": """",
                     ""id"": ""16cec1cd-b16f-4c8e-8c66-f717a0c0d63f"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

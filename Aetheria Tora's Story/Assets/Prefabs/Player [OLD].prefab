@@ -3904,6 +3904,7 @@ MonoBehaviour:
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
+  isInvulnerable: 0
 --- !u!114 &1451172826935866479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3955,6 +3956,7 @@ MonoBehaviour:
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  playerManager: {fileID: 0}
   healthBar: {fileID: 20053322}
   staminaBar: {fileID: 429913965}
   CSCountText: {fileID: 5621660039451233450}
