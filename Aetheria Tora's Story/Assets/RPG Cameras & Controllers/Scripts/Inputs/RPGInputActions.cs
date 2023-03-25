@@ -93,6 +93,15 @@ namespace JohnStairs.RCC.Inputs
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""10d8288e-776b-4269-97df-c52969699b31"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""72a89df9-fba8-4885-9e52-2a014b4b5d95"",
@@ -222,6 +231,24 @@ namespace JohnStairs.RCC.Inputs
                     ""name"": ""Pause Rotation With Character"",
                     ""type"": ""Button"",
                     ""id"": ""5de6b4ec-9506-4886-b528-2eeda0c34e83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a137bc87-239b-494a-922f-562e77cbf907"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key2"",
+                    ""type"": ""Button"",
+                    ""id"": ""7582eb6c-8ebb-4e41-9e32-55cd714cfb75"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -701,6 +728,50 @@ namespace JohnStairs.RCC.Inputs
                     ""action"": ""Pause Rotation With Character"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ff9794c-740c-461b-a388-2d3e79c3a716"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fca2b324-7c38-4f40-8a2a-68399fd50caf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75d90497-fe88-442a-bdc9-e75e4ef05156"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""272fb23f-0528-4e0e-ad8c-c6fcc6aa0525"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -716,6 +787,7 @@ namespace JohnStairs.RCC.Inputs
             m_Character_Autorun = m_Character.FindAction("Autorun", throwIfNotFound: true);
             m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
             m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
+            m_Character_Roll = m_Character.FindAction("Roll", throwIfNotFound: true);
             m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
             m_Character_Dive = m_Character.FindAction("Dive", throwIfNotFound: true);
             m_Character_Surface = m_Character.FindAction("Surface", throwIfNotFound: true);
@@ -731,6 +803,8 @@ namespace JohnStairs.RCC.Inputs
             m_Character_ZoomToMaxDistance = m_Character.FindAction("Zoom To Max Distance", throwIfNotFound: true);
             m_Character_AlignCharacter = m_Character.FindAction("Align Character", throwIfNotFound: true);
             m_Character_PauseRotationWithCharacter = m_Character.FindAction("Pause Rotation With Character", throwIfNotFound: true);
+            m_Character_Key1 = m_Character.FindAction("Key1", throwIfNotFound: true);
+            m_Character_Key2 = m_Character.FindAction("Key2", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -797,6 +871,7 @@ namespace JohnStairs.RCC.Inputs
         private readonly InputAction m_Character_Autorun;
         private readonly InputAction m_Character_Walk;
         private readonly InputAction m_Character_Crouch;
+        private readonly InputAction m_Character_Roll;
         private readonly InputAction m_Character_Sprint;
         private readonly InputAction m_Character_Dive;
         private readonly InputAction m_Character_Surface;
@@ -812,6 +887,8 @@ namespace JohnStairs.RCC.Inputs
         private readonly InputAction m_Character_ZoomToMaxDistance;
         private readonly InputAction m_Character_AlignCharacter;
         private readonly InputAction m_Character_PauseRotationWithCharacter;
+        private readonly InputAction m_Character_Key1;
+        private readonly InputAction m_Character_Key2;
         public struct CharacterActions
         {
             private @RPGInputActions m_Wrapper;
@@ -823,6 +900,7 @@ namespace JohnStairs.RCC.Inputs
             public InputAction @Autorun => m_Wrapper.m_Character_Autorun;
             public InputAction @Walk => m_Wrapper.m_Character_Walk;
             public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
+            public InputAction @Roll => m_Wrapper.m_Character_Roll;
             public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
             public InputAction @Dive => m_Wrapper.m_Character_Dive;
             public InputAction @Surface => m_Wrapper.m_Character_Surface;
@@ -838,6 +916,8 @@ namespace JohnStairs.RCC.Inputs
             public InputAction @ZoomToMaxDistance => m_Wrapper.m_Character_ZoomToMaxDistance;
             public InputAction @AlignCharacter => m_Wrapper.m_Character_AlignCharacter;
             public InputAction @PauseRotationWithCharacter => m_Wrapper.m_Character_PauseRotationWithCharacter;
+            public InputAction @Key1 => m_Wrapper.m_Character_Key1;
+            public InputAction @Key2 => m_Wrapper.m_Character_Key2;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -868,6 +948,9 @@ namespace JohnStairs.RCC.Inputs
                     @Crouch.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
+                    @Roll.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
+                    @Roll.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
+                    @Roll.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
                     @Sprint.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                     @Sprint.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                     @Sprint.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
@@ -913,6 +996,12 @@ namespace JohnStairs.RCC.Inputs
                     @PauseRotationWithCharacter.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseRotationWithCharacter;
                     @PauseRotationWithCharacter.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseRotationWithCharacter;
                     @PauseRotationWithCharacter.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseRotationWithCharacter;
+                    @Key1.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
+                    @Key1.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
+                    @Key1.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
+                    @Key2.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
+                    @Key2.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
+                    @Key2.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
                 }
                 m_Wrapper.m_CharacterActionsCallbackInterface = instance;
                 if (instance != null)
@@ -938,6 +1027,9 @@ namespace JohnStairs.RCC.Inputs
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
+                    @Roll.started += instance.OnRoll;
+                    @Roll.performed += instance.OnRoll;
+                    @Roll.canceled += instance.OnRoll;
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
@@ -983,6 +1075,12 @@ namespace JohnStairs.RCC.Inputs
                     @PauseRotationWithCharacter.started += instance.OnPauseRotationWithCharacter;
                     @PauseRotationWithCharacter.performed += instance.OnPauseRotationWithCharacter;
                     @PauseRotationWithCharacter.canceled += instance.OnPauseRotationWithCharacter;
+                    @Key1.started += instance.OnKey1;
+                    @Key1.performed += instance.OnKey1;
+                    @Key1.canceled += instance.OnKey1;
+                    @Key2.started += instance.OnKey2;
+                    @Key2.performed += instance.OnKey2;
+                    @Key2.canceled += instance.OnKey2;
                 }
             }
         }
@@ -996,6 +1094,7 @@ namespace JohnStairs.RCC.Inputs
             void OnAutorun(InputAction.CallbackContext context);
             void OnWalk(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
+            void OnRoll(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnDive(InputAction.CallbackContext context);
             void OnSurface(InputAction.CallbackContext context);
@@ -1011,6 +1110,8 @@ namespace JohnStairs.RCC.Inputs
             void OnZoomToMaxDistance(InputAction.CallbackContext context);
             void OnAlignCharacter(InputAction.CallbackContext context);
             void OnPauseRotationWithCharacter(InputAction.CallbackContext context);
+            void OnKey1(InputAction.CallbackContext context);
+            void OnKey2(InputAction.CallbackContext context);
         }
     }
 }

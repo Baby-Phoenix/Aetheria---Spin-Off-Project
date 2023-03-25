@@ -55,7 +55,7 @@ public class WeaponSlotManager : MonoBehaviour
         }
         else
         {
-            rightHandSlot.LoadWeaponModel(weaponItem);
+          //  rightHandSlot.LoadWeaponModel(weaponItem);
             LoadRightWeaponDamageCollider();
 
             #region Handle Right Weapon Idle Animation
@@ -92,12 +92,12 @@ public class WeaponSlotManager : MonoBehaviour
 
     private void LoadLeftWeaponDamageCollider()
     {
-        leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+       // leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
     }
 
     private void LoadRightWeaponDamageCollider()
     {
-        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+        rightHandDamageCollider = rightHandSlot.spearModel.GetComponentInChildren<DamageCollider>();
     }
 
     public void OpenRightHandDamageCollider()

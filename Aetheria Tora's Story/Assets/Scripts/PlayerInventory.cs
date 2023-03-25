@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerInventory : MonoBehaviour
 {
     WeaponSlotManager weaponSlotManager;
+    Rig rig;
 
     public WeaponItem rightWeapon;
     //public WeaponItem leftWeapon;
@@ -20,6 +22,7 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        rig = GetComponentInChildren<Rig>();
     }
 
     private void Start()
@@ -57,6 +60,21 @@ public class PlayerInventory : MonoBehaviour
 
 
         //leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
+    }
+
+    public void ChangeRightWeapon(int key)
+    {
+        currentRightWeaponIndex = key;
+        weaponSlotManager.LoadWeaponOnSlot(rightWeapon, currentRightWeaponIndex);
+
+        if (key == 1)
+        {
+            rig.weight = 0;
+        }
+        else
+        {
+            rig.weight = 1;
+        }
     }
 
 

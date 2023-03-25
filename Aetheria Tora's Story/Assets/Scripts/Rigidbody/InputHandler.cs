@@ -23,6 +23,8 @@ public class InputHandler : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public bool comboFlag;
+    public bool key1Flag;
+    public bool key2Flag;
     public bool leftClickTapFlag;
     public float rollInputTimer;
     public float leftClickInputTimer;
@@ -84,6 +86,16 @@ public class InputHandler : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+        if (inputActions.Player.Key1.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+        {
+            playerInventory.ChangeRightWeapon(0);
+            playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+        }
+        else if (inputActions.Player.Key2.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+        {
+            playerInventory.ChangeRightWeapon(1);
+            playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+        }
     }
 
     public void HandleJumpInput()
@@ -99,8 +111,9 @@ public class InputHandler : MonoBehaviour
     private void HandleRollInput(float delta)
     {
         shiftInput = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
-        
-        if (shiftInput)
+        rollFlag = inputActions.Player.Roll1.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
+
+        if (shiftInput || rollFlag)
         {
             rollInputTimer += delta;
             sprintFlag = true;
@@ -121,7 +134,7 @@ public class InputHandler : MonoBehaviour
 
     public void HandleRangedInput(float delta)
     {
-        if (!playerInventory.rightWeapon.isMelee)
+        if (playerInventory.currentRightWeaponIndex == 0) //0 is the index for the gun 
         {
             leftClickInput = inputActions.Player.LeftClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
             rightClickInput = inputActions.Player.RightClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
@@ -131,6 +144,7 @@ public class InputHandler : MonoBehaviour
                 //set a bool true
                 leftClickInputTimer += delta;
                 leftClickTapFlag = false;
+                playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
             }
             else
             {
@@ -148,7 +162,7 @@ public class InputHandler : MonoBehaviour
     public void HandleAttackInput(float delta)
     {
 
-        if (playerInventory.rightWeapon.isMelee)
+        if (playerInventory.currentRightWeaponIndex == 1)
         {
             inputActions.Player.LeftClick.performed += i => leftClickInput = true;
             inputActions.Player.RightClick.performed += i => rightClickInput = true;
@@ -183,14 +197,14 @@ public class InputHandler : MonoBehaviour
         inputActions.Player.ScrollUp.performed += i => scrollUp = true;
         inputActions.Player.ScrollDown.performed += i => scrollDown = true;
 
-        if (scrollDown)
-        {
-            playerInventory.ChangeRightWeapon();
-        }
-        else if (scrollUp)
-        {
-            playerInventory.ChangeRightWeapon();
-        }
+        //if (scrollDown)
+        //{
+        //    playerInventory.ChangeRightWeapon();
+        //}
+        //else if (scrollUp)
+        //{
+        //    playerInventory.ChangeRightWeapon();
+        //}
 
         if (playerInventory.rightWeapon.isMelee)
         {
@@ -201,7 +215,7 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
+           // playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
 
             spearImage.enabled = false;
             pistolImage.enabled = true;

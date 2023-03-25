@@ -82,6 +82,24 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Key1"",
+                    ""type"": ""Button"",
+                    ""id"": ""db726109-d2df-4222-9bb2-dba99ad09321"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key2"",
+                    ""type"": ""Button"",
+                    ""id"": ""21f5db5e-ba3c-4715-93d6-98331b59a429"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""PassThrough"",
                     ""id"": ""bbdfd315-b206-413c-8fcd-fb8c2d370b9f"",
@@ -151,6 +169,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Roll1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4d8252e-ae59-4976-8f0c-bb14a6923182"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -374,6 +401,39 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""UseCleansingCrystal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4ddddd5-7778-4064-b76d-92dcfeba1ead"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5f5fc3b-db6a-48c7-9b67-6c30e4502dd2"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf1b6f80-be6b-4cac-861a-03245c322f58"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -449,6 +509,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Player_LeftClick = m_Player.FindAction("LeftClick", throwIfNotFound: true);
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
+        m_Player_Key1 = m_Player.FindAction("Key1", throwIfNotFound: true);
+        m_Player_Key2 = m_Player.FindAction("Key2", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_UseCrystalSoul = m_Player.FindAction("UseCrystalSoul", throwIfNotFound: true);
         m_Player_UseSoulFragment = m_Player.FindAction("UseSoulFragment", throwIfNotFound: true);
@@ -457,6 +519,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Player_ScrollDown = m_Player.FindAction("ScrollDown", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_ResetRoll = m_Player.FindAction("ResetRoll", throwIfNotFound: true);
+        m_Player_Roll1 = m_Player.FindAction("Roll1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -522,6 +585,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftClick;
     private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_Roll;
+    private readonly InputAction m_Player_Key1;
+    private readonly InputAction m_Player_Key2;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_UseCrystalSoul;
     private readonly InputAction m_Player_UseSoulFragment;
@@ -530,6 +595,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ScrollDown;
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_ResetRoll;
+    private readonly InputAction m_Player_Roll1;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -540,6 +606,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @LeftClick => m_Wrapper.m_Player_LeftClick;
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
+        public InputAction @Key1 => m_Wrapper.m_Player_Key1;
+        public InputAction @Key2 => m_Wrapper.m_Player_Key2;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @UseCrystalSoul => m_Wrapper.m_Player_UseCrystalSoul;
         public InputAction @UseSoulFragment => m_Wrapper.m_Player_UseSoulFragment;
@@ -548,6 +616,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @ScrollDown => m_Wrapper.m_Player_ScrollDown;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @ResetRoll => m_Wrapper.m_Player_ResetRoll;
+        public InputAction @Roll1 => m_Wrapper.m_Player_Roll1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -575,6 +644,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Roll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
                 @Roll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
                 @Roll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                @Key1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey1;
+                @Key1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey1;
+                @Key1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey1;
+                @Key2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey2;
+                @Key2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey2;
+                @Key2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKey2;
                 @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
@@ -599,6 +674,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ResetRoll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
                 @ResetRoll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
                 @ResetRoll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetRoll;
+                @Roll1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll1;
+                @Roll1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll1;
+                @Roll1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll1;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -621,6 +699,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
+                @Key1.started += instance.OnKey1;
+                @Key1.performed += instance.OnKey1;
+                @Key1.canceled += instance.OnKey1;
+                @Key2.started += instance.OnKey2;
+                @Key2.performed += instance.OnKey2;
+                @Key2.canceled += instance.OnKey2;
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
@@ -645,6 +729,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ResetRoll.started += instance.OnResetRoll;
                 @ResetRoll.performed += instance.OnResetRoll;
                 @ResetRoll.canceled += instance.OnResetRoll;
+                @Roll1.started += instance.OnRoll1;
+                @Roll1.performed += instance.OnRoll1;
+                @Roll1.canceled += instance.OnRoll1;
             }
         }
     }
@@ -702,6 +789,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnLeftClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnKey1(InputAction.CallbackContext context);
+        void OnKey2(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnUseCrystalSoul(InputAction.CallbackContext context);
         void OnUseSoulFragment(InputAction.CallbackContext context);
@@ -710,5 +799,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnScrollDown(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnResetRoll(InputAction.CallbackContext context);
+        void OnRoll1(InputAction.CallbackContext context);
     }
 }

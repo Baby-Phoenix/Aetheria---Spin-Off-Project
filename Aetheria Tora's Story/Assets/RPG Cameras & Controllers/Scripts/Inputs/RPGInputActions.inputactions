@@ -69,6 +69,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "10d8288e-776b-4269-97df-c52969699b31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "Button",
                     "id": "72a89df9-fba8-4885-9e52-2a014b4b5d95",
@@ -198,6 +207,24 @@
                     "name": "Pause Rotation With Character",
                     "type": "Button",
                     "id": "5de6b4ec-9506-4886-b528-2eeda0c34e83",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Key1",
+                    "type": "Button",
+                    "id": "a137bc87-239b-494a-922f-562e77cbf907",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Key2",
+                    "type": "Button",
+                    "id": "7582eb6c-8ebb-4e41-9e32-55cd714cfb75",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -675,6 +702,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause Rotation With Character",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ff9794c-740c-461b-a388-2d3e79c3a716",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fca2b324-7c38-4f40-8a2a-68399fd50caf",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75d90497-fe88-442a-bdc9-e75e4ef05156",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "272fb23f-0528-4e0e-ad8c-c6fcc6aa0525",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -201,6 +201,7 @@ public class PlayerLocomotion : MonoBehaviour
            // moveDirection += cameraObject.right;
 
             animatorHandler.PlayTargetAnimation("Rolling", true);
+            print("rolling is called");
             moveDirection.y = 0;
             Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
             myTransform.rotation = rollRotation;

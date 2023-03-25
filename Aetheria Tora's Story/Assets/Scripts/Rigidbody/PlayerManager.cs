@@ -7,8 +7,8 @@ public class PlayerManager : MonoBehaviour
 {
     InputHandler inputHandler;
     public Animator anim;
-    PlayerLocomotion playerLocomotion;
     public Transform colliderCenter;
+    public AnimatorHandler animatorHandler;
 
     public bool isInteracting;
 
@@ -23,9 +23,10 @@ public class PlayerManager : MonoBehaviour
     {
         inputHandler = GetComponent<InputHandler>();
         anim = GetComponentInChildren<Animator>();
-        playerLocomotion = GetComponent<PlayerLocomotion>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        animatorHandler = GetComponent<AnimatorHandler>();
+        animatorHandler.Initialize();
     }
 
     private void Update()
@@ -35,7 +36,6 @@ public class PlayerManager : MonoBehaviour
         isSprinting = inputHandler.shiftInput;
         inputHandler.HandleAttackInput(delta);
         inputHandler.HandleQuickSlotsInput();
-        playerLocomotion.HandleAiming(delta);
     }
 
     void FixedUpdate()
@@ -48,17 +48,13 @@ public class PlayerManager : MonoBehaviour
         anim.SetBool("isInAir", isInAir);
 
         inputHandler.TickInput(delta);
-        playerLocomotion.HandleMovement(delta);
 
-        playerLocomotion.WallChecker();
-        playerLocomotion.HandleClimbing(delta);
-        if (playerLocomotion.climbing) playerLocomotion.ClimbingMovement();
+        if (inputHandler.rollFlag)
+        {
+            animatorHandler.PlayTargetAnimation("Rolling", true);
+            print("rolling is called");
 
-        playerLocomotion.HandleRollingAndSprinting(delta);
-        playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
-        playerLocomotion.HandleJumping();
-
-
+        }
     }
     private void LateUpdate()
     {
@@ -70,10 +66,5 @@ public class PlayerManager : MonoBehaviour
         inputHandler.scrollUp = false;
         inputHandler.scrollDown = false;
         inputHandler.leftClickTapFlag = false;
-
-        if (isInAir)
-        {
-            playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
-        }
     }
 }

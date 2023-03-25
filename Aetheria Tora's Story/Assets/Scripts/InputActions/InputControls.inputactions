@@ -60,6 +60,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Key1",
+                    "type": "Button",
+                    "id": "db726109-d2df-4222-9bb2-dba99ad09321",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Key2",
+                    "type": "Button",
+                    "id": "21f5db5e-ba3c-4715-93d6-98331b59a429",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Crouch",
                     "type": "PassThrough",
                     "id": "bbdfd315-b206-413c-8fcd-fb8c2d370b9f",
@@ -129,6 +147,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Roll1",
+                    "type": "Button",
+                    "id": "e4d8252e-ae59-4976-8f0c-bb14a6923182",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -350,6 +377,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseCleansingCrystal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4ddddd5-7778-4064-b76d-92dcfeba1ead",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5f5fc3b-db6a-48c7-9b67-6c30e4502dd2",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf1b6f80-be6b-4cac-861a-03245c322f58",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
