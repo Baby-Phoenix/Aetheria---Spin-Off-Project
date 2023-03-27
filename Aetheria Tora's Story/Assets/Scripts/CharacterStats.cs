@@ -11,6 +11,7 @@ public class CharacterStats : MonoBehaviour
     public int crystalSoulCount;
     public int soulFragmentCount;
     public int cleansingCrystalCount;
+    public int currencyCount;
 
     public int staminaLevel = 10;
     public int maxStamina;

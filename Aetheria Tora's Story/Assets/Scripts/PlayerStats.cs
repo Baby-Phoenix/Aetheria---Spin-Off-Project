@@ -11,6 +11,9 @@ public class PlayerStats : CharacterStats
     public Text CSCountText;
     public Text SFCountText;
     public Text CCCountText;
+    public Text CurrencyText;
+    public LayerMask LootMask;
+    public float radius = 2f;
 
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
@@ -33,6 +36,7 @@ public class PlayerStats : CharacterStats
         crystalSoulCount = 3;
         soulFragmentCount = 0;
         cleansingCrystalCount = 0;
+        currencyCount = 0;
 
         maxStamina = SetMaxStaminaFromStaminaLevel();
         currentStamina = maxStamina;
@@ -46,6 +50,33 @@ public class PlayerStats : CharacterStats
         CSCountText.text = crystalSoulCount.ToString();
         SFCountText.text = soulFragmentCount.ToString();
         CCCountText.text = cleansingCrystalCount.ToString();
+        CurrencyText.text = currencyCount.ToString();
+        CurrencyCollision();
+    }
+
+    private void CurrencyCollision()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, LootMask);
+        
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].transform.gameObject != null)
+            {
+                print ("We're here");
+                print(colliders[i].tag);
+
+                if(colliders[i].tag == "Currency")
+                {
+                    currencyCount++;
+                    Destroy(colliders[0].transform.gameObject);
+                }
+                else if (colliders[i].tag == "Potion")
+                {
+                    soulFragmentCount++;
+                    Destroy(colliders[0].transform.gameObject);
+                }
+            }
+        }
     }
 
     public float SetMaxHealthFromHealthLevel()

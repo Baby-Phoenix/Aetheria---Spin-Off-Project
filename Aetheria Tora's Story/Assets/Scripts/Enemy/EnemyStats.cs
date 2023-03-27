@@ -45,10 +45,9 @@ public class EnemyStats : CharacterStats
             canvas.enabled = true;
             transform.localPosition = originalPos;
             gameObject.SetActive(false);
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
             //Destroy(gameObject);
         }
-
-        
     }
 
     void Start()
