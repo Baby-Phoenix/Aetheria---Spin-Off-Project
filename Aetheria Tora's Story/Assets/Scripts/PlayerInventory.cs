@@ -66,6 +66,7 @@ public class PlayerInventory : MonoBehaviour
     {
         currentRightWeaponIndex = key;
         weaponSlotManager.LoadWeaponOnSlot(rightWeapon, currentRightWeaponIndex);
+        rightWeapon = weaponsInRightHandSlots[key];
 
         if (key == 1)
         {

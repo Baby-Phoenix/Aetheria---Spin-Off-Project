@@ -18,8 +18,8 @@ public class WeaponSlotManager : MonoBehaviour
     
     private void Awake()
     {
-        animator = GetComponentInParent<Animator>();
-        playerStats = GetComponentInParent<PlayerStats>();
+        animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
