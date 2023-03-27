@@ -3786,6 +3786,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
@@ -3795,6 +3796,11 @@ MonoBehaviour:
   CSCountText: {fileID: 0}
   SFCountText: {fileID: 0}
   CCCountText: {fileID: 0}
+  CurrencyText: {fileID: 0}
+  LootMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  radius: 2
   animatorHandler: {fileID: 0}
 --- !u!114 &8708319747954022416
 MonoBehaviour:

@@ -2684,6 +2684,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
@@ -15963,6 +15964,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
@@ -15972,6 +15974,11 @@ MonoBehaviour:
   CSCountText: {fileID: 0}
   SFCountText: {fileID: 0}
   CCCountText: {fileID: 0}
+  CurrencyText: {fileID: 0}
+  LootMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 2
   animatorHandler: {fileID: 0}
 --- !u!114 &1711226046
 MonoBehaviour:
@@ -19248,6 +19255,11 @@ PrefabInstance:
       propertyPath: SFCountText
       value: 
       objectReference: {fileID: 1654764970}
+    - target: {fileID: 8708319747954022417, guid: 0882a650349ea1f44a54562a53fff208,
+        type: 3}
+      propertyPath: CurrencyText
+      value: 
+      objectReference: {fileID: 5570245930957880830}
     - target: {fileID: 8708319747954022419, guid: 0882a650349ea1f44a54562a53fff208,
         type: 3}
       propertyPath: spearImage
@@ -19468,3 +19480,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7992470345d7d314b93dcf8f43c8381f, type: 3}
+--- !u!114 &5570245930957880830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3040615965422437342, guid: 7992470345d7d314b93dcf8f43c8381f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570245930957880829}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
