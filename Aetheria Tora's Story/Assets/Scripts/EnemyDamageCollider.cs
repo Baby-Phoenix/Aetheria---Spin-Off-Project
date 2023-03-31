@@ -19,13 +19,13 @@ public class EnemyDamageCollider : MonoBehaviour
         damageCollider.enabled = false;
     }
 
-    private void PushBack()
-    {
-        Vector3 pushDirection = enemyLocomotionManager.currentTarget.animatorHandler.playerLocomotion.rigidbody.transform.position - transform.position;
-        pushDirection.Normalize();
+    //private void PushBack()
+    //{
+    //    Vector3 pushDirection = enemyLocomotionManager.currentTarget.animatorHandler.playerLocomotion.rigidbody.transform.position - transform.position;
+    //    pushDirection.Normalize();
 
-        enemyLocomotionManager.currentTarget.animatorHandler.playerLocomotion.rigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
-    }
+    //    enemyLocomotionManager.currentTarget.animatorHandler.playerLocomotion.rigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+    //}
 
 
     public void EnableDamageCollider()
@@ -47,7 +47,7 @@ public class EnemyDamageCollider : MonoBehaviour
             if (playerStats.playerManager.isInvulnerable)
                 return;
 
-            if (playerStats != null && playerStats.currentHealth > 0)
+            if (playerStats != null && playerStats.currentHealth > 0 && damageCollider.enabled)
             {
                 playerStats.TakeDamage(currentWeaponDamage);
 
@@ -56,7 +56,7 @@ public class EnemyDamageCollider : MonoBehaviour
 
                 if (currentClipName == "metarig_melee")
                 {
-                    PushBack();
+                    //PushBack();
                 }
             }
         }

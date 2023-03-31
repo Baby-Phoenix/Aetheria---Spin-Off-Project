@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class EnemyAnimatorManager : AnimatorManager
 {
-    EnemyLocomotionManager enemyLocomotionManager;
-    //AnimatorDataHandler enemyAnimatorDataHandler;
+    EnemyManager enemyManager;
 
     public GameObject bullet;
     public Transform spawnPoint;
@@ -18,19 +17,19 @@ public class EnemyAnimatorManager : AnimatorManager
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemyLocomotionManager =  GetComponentInParent<EnemyLocomotionManager>();
-        //enemyAnimatorDataHandler = GetComponent<AnimatorDataHandler>();
+        enemyManager =  GetComponentInParent<EnemyManager>();
     }
 
     private void OnAnimatorMove()
     {
         float delta = Time.deltaTime;
-        enemyLocomotionManager.enemyRigidBody.drag = 0;
+        enemyManager.enemyRigidBody.drag = 0;
         Vector3 deltaPosition = animator.deltaPosition;
         deltaPosition.y = 0;
         Vector3 velocity = deltaPosition / delta;
-        enemyLocomotionManager.enemyRigidBody.velocity = velocity;
-        //enemyAnimatorDataHandler.UpdateAnimatorValues(velocity.x, velocity.z);
+        enemyManager.enemyRigidBody.velocity = velocity;
+        if(animator.GetBool("isInteracting"))
+            enemyManager.navmeshAgent.velocity = velocity;
     }
 
     public void OpenDamageCollider()
@@ -48,11 +47,15 @@ public class EnemyAnimatorManager : AnimatorManager
         GameObject clone = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
         Rigidbody rb = clone.GetComponentInChildren<Rigidbody>();
 
-        Vector3 direction = enemyLocomotionManager.currentTarget.transform.position - spawnPoint.position;
+        Vector3 direction = enemyManager.currentTarget.transform.position - spawnPoint.position;
         direction.y += 1;
         direction.Normalize();
-        
+
         rb.AddForce(direction * bulletSpeed, ForceMode.Impulse);
-        Destroy(clone, 3);
+        if(clone != null)
+        {
+            Destroy(clone, 3);
+        }
+       
     }
 }

@@ -18,5 +18,5 @@ MonoBehaviour:
   isAbleToRotate: 1
   maximumAttackAngle: 35
   minimumAttackAngle: -35
-  minimumDistanceNeededToAttack: 2
+  minimumDistanceNeededToAttack: 1
   maximumDistanceNeededToAttack: 20

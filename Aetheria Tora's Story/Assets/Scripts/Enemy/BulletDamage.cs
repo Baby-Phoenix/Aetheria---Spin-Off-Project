@@ -33,6 +33,11 @@ public class BulletDamage : MonoBehaviour
             {
                 playerStats.TakeDamage(currentWeaponDamage);
             }
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
     }

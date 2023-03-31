@@ -10,7 +10,7 @@ public class EnemyStats : CharacterStats
     public Vector3 originalPos;
     public bool hasBeenHit;
     float hitTimer = 0;
-
+    private bool isDead = false;
     Animator animator;
 
     private void Awake()
@@ -37,10 +37,10 @@ public class EnemyStats : CharacterStats
 
     private void LateUpdate()
     {
-        if (currentHealth <= 0/*animator.GetCurrentAnimatorStateInfo(1).IsName("DeathFront") && animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1 && !animator.IsInTransition(0)*/)
+        if (isDead && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
         {
             currentHealth = maxHealth;
-            enemyManager.enemyLocomotionManager.currentTarget = null;
+            enemyManager.currentTarget = null;
             enemyManager.enabled = true;
             canvas.enabled = true;
             transform.localPosition = originalPos;
@@ -77,8 +77,10 @@ public class EnemyStats : CharacterStats
             enemyManager.enabled = false;
             canvas.enabled = false;
             currentHealth = 0;
-            //animator.Play("DeathFront");
-            
+            animator.Play("Death");
+            isDead = true;
+
+
         }
         hasBeenHit = true;
     }
