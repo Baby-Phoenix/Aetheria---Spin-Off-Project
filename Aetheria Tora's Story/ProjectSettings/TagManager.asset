@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Gun
   - Target
+  - Currency
+  - Magazine
+  - Potion
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Player
   - 
   - Character
-  - 
+  - Loot
   - 
   - 
   - 
