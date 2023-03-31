@@ -647,6 +647,7 @@ namespace JohnStairs.RCC.Character {
         public virtual void ToggleCrouching(bool toggle) {
             if (toggle && !_swimming) {
                 _crouching = !_crouching;
+                print("Crouching" + _crouching);
             }
         }
 

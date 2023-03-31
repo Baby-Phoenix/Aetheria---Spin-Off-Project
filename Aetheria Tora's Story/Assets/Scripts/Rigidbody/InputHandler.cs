@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
+using JohnStairs.RCC.Character.ARPG;
+using JohnStairs.RCC.Inputs;
 
 public class InputHandler : MonoBehaviour
 {
@@ -29,7 +32,11 @@ public class InputHandler : MonoBehaviour
     public float rollInputTimer;
     public float leftClickInputTimer;
 
-    public InputControls inputActions;
+    public bool crouchingFlag = false;
+
+    public RPGControllerARPG controllerARPG; 
+    public Rig rig;
+    public RPGInputActions inputActions;
     PlayerAttacker playerAttacker;
     public PlayerInventory playerInventory;
     PlayerManager playerManager;
@@ -49,15 +56,18 @@ public class InputHandler : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        rig = GetComponentInChildren<Rig>();
+        controllerARPG = GetComponent<RPGControllerARPG>();
     }
 
     public void OnEnable()
     {
         if (inputActions == null)
         {
-            inputActions = new InputControls();
-            inputActions.Player.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-            inputActions.Player.Aim.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions = RPGInputManager.GetInputActions();
+            inputActions.Character.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+            inputActions.Character.RotationAmount.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions.Character.Crouch.performed += j => crouchingFlag = !crouchingFlag;
         }
 
         inputActions.Enable();
@@ -70,13 +80,14 @@ public class InputHandler : MonoBehaviour
 
     public void TickInput(float delta)
     {
+       // crouchingFlag = inputActions.Character.Crouch.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
         MoveInput(delta);
         HandleRollInput(delta);
-        HandleJumpInput();
         HandleReload();
         HandleRangedInput(delta);
         //HandleAttackInput(delta);
         //HandleQuickSlotsInput();
+        controllerARPG.ActivateCharacterControl = animatorHandler.animator.GetBool("canMove");
     }
 
     private void MoveInput(float delta)
@@ -86,49 +97,41 @@ public class InputHandler : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
-        if (inputActions.Player.Key1.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+
+        if (horizontal > 0 || vertical > 0)
+        {
+            playerManager.anim.applyRootMotion = false;
+        }
+
+        if (inputActions.Character.Key1.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
         {
             playerInventory.ChangeRightWeapon(0);
             playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+            rig.weight = 0;
         }
-        else if (inputActions.Player.Key2.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+        else if (inputActions.Character.Key2.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
         {
             playerInventory.ChangeRightWeapon(1);
             playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+            rig.weight = 0;
         }
-    }
-
-    public void HandleJumpInput()
-    {
-        spaceInput = inputActions.Player.Jump.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
     }
 
     public void HandleReload()
     {
-        reloadInput = inputActions.Player.Reload.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+        reloadInput = inputActions.Character.Reload.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
     }
 
     private void HandleRollInput(float delta)
     {
-        shiftInput = inputActions.Player.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
-        rollFlag = inputActions.Player.Roll1.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
+        shiftInput = inputActions.Character.Sprint.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
+        rollFlag = (inputActions.Character.Crouch.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5) && moveAmount > 0;
 
-        if (shiftInput || rollFlag)
+        if (shiftInput)
         {
-            rollInputTimer += delta;
+            controllerARPG.ActivateCharacterControl = false;
             sprintFlag = true;
             playerStats.TakeStaminaDamage(1);
-        }
-        else
-        {
-            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
-            {
-                sprintFlag = false;
-                animatorHandler.EnableIsInvulnerable();
-                rollFlag = true;
-            }
-
-            rollInputTimer = 0;
         }
     }
 
@@ -136,8 +139,8 @@ public class InputHandler : MonoBehaviour
     {
         if (playerInventory.currentRightWeaponIndex == 0) //0 is the index for the gun 
         {
-            leftClickInput = inputActions.Player.LeftClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
-            rightClickInput = inputActions.Player.RightClick.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+            leftClickInput = inputActions.Character.MoveForwardHalf1.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+            rightClickInput = inputActions.Character.MoveForwardHalf2.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
 
             if (leftClickInput)
             {
@@ -145,6 +148,7 @@ public class InputHandler : MonoBehaviour
                 leftClickInputTimer += delta;
                 leftClickTapFlag = false;
                 playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
+                rig.weight = 0.5f;
             }
             else
             {
@@ -164,8 +168,8 @@ public class InputHandler : MonoBehaviour
 
         if (playerInventory.currentRightWeaponIndex == 1)
         {
-            inputActions.Player.LeftClick.performed += i => leftClickInput = true;
-            inputActions.Player.RightClick.performed += i => rightClickInput = true;
+            inputActions.Character.MoveForwardHalf1.performed += i => leftClickInput = true;
+            inputActions.Character.MoveForwardHalf2.performed += i => rightClickInput = true;
 
             //RB input handles the right hand weapon's light attack
             if (leftClickInput)
@@ -194,8 +198,8 @@ public class InputHandler : MonoBehaviour
 
     public void HandleQuickSlotsInput()
     {
-        inputActions.Player.ScrollUp.performed += i => scrollUp = true;
-        inputActions.Player.ScrollDown.performed += i => scrollDown = true;
+        //inputActions.Character.ScrollUp.performed += i => scrollUp = true;
+        //inputActions.Character.ScrollDown.performed += i => scrollDown = true;
 
         //if (scrollDown)
         //{
@@ -209,6 +213,7 @@ public class InputHandler : MonoBehaviour
         if (playerInventory.rightWeapon.isMelee)
         {
             playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 0);
+            rig.weight = 0;
 
             spearImage.enabled = true;
             pistolImage.enabled = false;

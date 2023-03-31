@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Movement",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "515c169c-36ff-49e5-a6ec-5328613fcd6f",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Roll",
+                    "name": "Heal",
                     "type": "Button",
                     "id": "10d8288e-776b-4269-97df-c52969699b31",
                     "expectedControlType": "Button",
@@ -216,6 +216,15 @@
                     "name": "Key1",
                     "type": "Button",
                     "id": "a137bc87-239b-494a-922f-562e77cbf907",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "fae9f5dc-9dd9-4338-b43b-c6f7888ffcf3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -734,7 +743,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roll",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -745,7 +754,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roll",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d1ef339-0954-46ba-acc6-a09cba806c4f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

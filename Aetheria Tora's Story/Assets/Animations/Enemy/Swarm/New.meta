@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Aetheria Tora's Story/Assets/Animations/Enemy/Swarm/New.meta
 guid: 09a56b753b9f41b40a7c7902423058b2
 folderAsset: yes
+========
+guid: ca5c2c7c46df27342ac3b87ebbe8964a
+>>>>>>>> 109f055e05f37d1d07e43193ff4514e5b7b290a5:Aetheria Tora's Story/Assets/RealToon/RealToon Examples/SRP/URP/RealToon URP (Simple Example).unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

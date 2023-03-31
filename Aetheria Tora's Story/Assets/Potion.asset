@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5105c61aadf5ca44a8fa0ec15e03e28, type: 3}
+  m_Name: Potion
+  m_EditorClassIdentifier: 
+  lootObject: {fileID: 5034835275142172131, guid: 2728878af775397489d6c677e1f60dbb,
+    type: 3}
+  lootName: Potion
+  dropChance: 100

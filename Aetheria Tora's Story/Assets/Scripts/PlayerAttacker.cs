@@ -41,11 +41,13 @@ public class PlayerAttacker : MonoBehaviour
             {
                 animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_2, true);
                 lastAttack = weapon.OH_Light_Attack_2;
+                animatorHandler.animator.SetBool("canMove", true);
             }
             else if (lastAttack == weapon.OH_Light_Attack_2)
             {
                 animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_3, true);
                 lastAttack = weapon.OH_Light_Attack_2;
+                animatorHandler.animator.SetBool("canMove", true);
             }
         }
     }
@@ -58,6 +60,7 @@ public class PlayerAttacker : MonoBehaviour
 
         animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
         lastAttack = weapon.OH_Light_Attack_1;
+        animatorHandler.animator.SetBool("canMove", true);
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
@@ -68,5 +71,6 @@ public class PlayerAttacker : MonoBehaviour
 
         animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
         lastAttack = weapon.OH_Heavy_Attack_1;
+        animatorHandler.animator.SetBool("canMove", true);
     }
 }
