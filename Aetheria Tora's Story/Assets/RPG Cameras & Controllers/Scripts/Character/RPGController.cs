@@ -33,6 +33,7 @@ namespace JohnStairs.RCC.Character {
         /// If true, character movement starts this frame
         /// </summary>
         protected bool _inputMovementStart = false;
+        protected bool _inputMovementPerformed = false;
         /// <summary>
         /// If true, character movement stops this frame
         /// </summary>
@@ -220,7 +221,8 @@ namespace JohnStairs.RCC.Character {
             // Movement input
             _inputActions.Character.Movement.started += context => _inputMovementStart = true;
             _inputActions.Character.Movement.canceled += context => _inputMovementStop = true;
-            
+            _inputActions.Character.Movement.performed += context => _inputMovementPerformed = true;
+
             // Strafe input
             _inputActions.Character.Strafe.started += context => _inputStrafeStart = true;
 
@@ -254,6 +256,7 @@ namespace JohnStairs.RCC.Character {
             _inputMoveForwardHalf2Stop = false;
             _inputMovementStart = false;
             _inputMovementStop = false;
+            _inputMovementPerformed = false;
             _inputStrafeStart = false;
             _inputJump = false;
             _inputToggleAutorunning = false;

@@ -1372,7 +1372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2838707595834558818}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2838707595150592157
 MonoBehaviour:
@@ -1386,9 +1386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.6
+  m_Weight: 0.7
   m_Data:
-    m_ConstrainedObject: {fileID: 790068389702578167}
+    m_ConstrainedObject: {fileID: 1112328126821825251}
     m_SourceObjects:
       m_Length: 1
       m_Item0:
@@ -1426,7 +1426,7 @@ MonoBehaviour:
     m_MaintainOffset: 0
     m_ConstrainedAxes:
       x: 1
-      y: 1
+      y: 0
       z: 0
 --- !u!1 &2838707595834558816
 GameObject:
@@ -1457,8 +1457,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2838707595150592154}
   - {fileID: 2838707596474209117}
+  - {fileID: 2838707595150592154}
   - {fileID: 2838707596509645483}
   m_Father: {fileID: 7867223730723627272}
   m_RootOrder: 2
@@ -1493,7 +1493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2838707596474209117
 Transform:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2838707595834558818}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2838707596474209116
 MonoBehaviour:
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0.7
   m_Data:
     m_ConstrainedObject: {fileID: 300216262789601918}
     m_SourceObjects:
@@ -1551,8 +1551,8 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: -180
-    m_MaxLimit: 180
+    m_MinLimit: -90
+    m_MaxLimit: 90
     m_AimAxis: 4
     m_UpAxis: 2
     m_WorldUpType: 0
@@ -1561,8 +1561,8 @@ MonoBehaviour:
     m_MaintainOffset: 0
     m_ConstrainedAxes:
       x: 1
-      y: 1
-      z: 1
+      y: 0
+      z: 0
 --- !u!1 &2838707596509645480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,8 +1646,8 @@ MonoBehaviour:
     m_WorldUpAxis: 2
     m_MaintainOffset: 0
     m_ConstrainedAxes:
-      x: 0
-      y: 1
+      x: 1
+      y: 0
       z: 0
 --- !u!1 &2840804998233717836
 GameObject:

@@ -40,7 +40,7 @@ namespace JohnStairs.RCC.Inputs
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""515c169c-36ff-49e5-a6ec-5328613fcd6f"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -93,7 +93,7 @@ namespace JohnStairs.RCC.Inputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Roll"",
+                    ""name"": ""Heal"",
                     ""type"": ""Button"",
                     ""id"": ""10d8288e-776b-4269-97df-c52969699b31"",
                     ""expectedControlType"": ""Button"",
@@ -240,6 +240,15 @@ namespace JohnStairs.RCC.Inputs
                     ""name"": ""Key1"",
                     ""type"": ""Button"",
                     ""id"": ""a137bc87-239b-494a-922f-562e77cbf907"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""fae9f5dc-9dd9-4338-b43b-c6f7888ffcf3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -758,7 +767,7 @@ namespace JohnStairs.RCC.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roll"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -769,7 +778,18 @@ namespace JohnStairs.RCC.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roll"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d1ef339-0954-46ba-acc6-a09cba806c4f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -787,7 +807,7 @@ namespace JohnStairs.RCC.Inputs
             m_Character_Autorun = m_Character.FindAction("Autorun", throwIfNotFound: true);
             m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
             m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
-            m_Character_Roll = m_Character.FindAction("Roll", throwIfNotFound: true);
+            m_Character_Heal = m_Character.FindAction("Heal", throwIfNotFound: true);
             m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
             m_Character_Dive = m_Character.FindAction("Dive", throwIfNotFound: true);
             m_Character_Surface = m_Character.FindAction("Surface", throwIfNotFound: true);
@@ -804,6 +824,7 @@ namespace JohnStairs.RCC.Inputs
             m_Character_AlignCharacter = m_Character.FindAction("Align Character", throwIfNotFound: true);
             m_Character_PauseRotationWithCharacter = m_Character.FindAction("Pause Rotation With Character", throwIfNotFound: true);
             m_Character_Key1 = m_Character.FindAction("Key1", throwIfNotFound: true);
+            m_Character_Reload = m_Character.FindAction("Reload", throwIfNotFound: true);
             m_Character_Key2 = m_Character.FindAction("Key2", throwIfNotFound: true);
         }
 
@@ -871,7 +892,7 @@ namespace JohnStairs.RCC.Inputs
         private readonly InputAction m_Character_Autorun;
         private readonly InputAction m_Character_Walk;
         private readonly InputAction m_Character_Crouch;
-        private readonly InputAction m_Character_Roll;
+        private readonly InputAction m_Character_Heal;
         private readonly InputAction m_Character_Sprint;
         private readonly InputAction m_Character_Dive;
         private readonly InputAction m_Character_Surface;
@@ -888,6 +909,7 @@ namespace JohnStairs.RCC.Inputs
         private readonly InputAction m_Character_AlignCharacter;
         private readonly InputAction m_Character_PauseRotationWithCharacter;
         private readonly InputAction m_Character_Key1;
+        private readonly InputAction m_Character_Reload;
         private readonly InputAction m_Character_Key2;
         public struct CharacterActions
         {
@@ -900,7 +922,7 @@ namespace JohnStairs.RCC.Inputs
             public InputAction @Autorun => m_Wrapper.m_Character_Autorun;
             public InputAction @Walk => m_Wrapper.m_Character_Walk;
             public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
-            public InputAction @Roll => m_Wrapper.m_Character_Roll;
+            public InputAction @Heal => m_Wrapper.m_Character_Heal;
             public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
             public InputAction @Dive => m_Wrapper.m_Character_Dive;
             public InputAction @Surface => m_Wrapper.m_Character_Surface;
@@ -917,6 +939,7 @@ namespace JohnStairs.RCC.Inputs
             public InputAction @AlignCharacter => m_Wrapper.m_Character_AlignCharacter;
             public InputAction @PauseRotationWithCharacter => m_Wrapper.m_Character_PauseRotationWithCharacter;
             public InputAction @Key1 => m_Wrapper.m_Character_Key1;
+            public InputAction @Reload => m_Wrapper.m_Character_Reload;
             public InputAction @Key2 => m_Wrapper.m_Character_Key2;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
@@ -948,9 +971,9 @@ namespace JohnStairs.RCC.Inputs
                     @Crouch.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
-                    @Roll.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
-                    @Roll.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
-                    @Roll.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
+                    @Heal.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnHeal;
+                    @Heal.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnHeal;
+                    @Heal.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnHeal;
                     @Sprint.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                     @Sprint.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                     @Sprint.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
@@ -999,6 +1022,9 @@ namespace JohnStairs.RCC.Inputs
                     @Key1.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
                     @Key1.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
                     @Key1.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey1;
+                    @Reload.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnReload;
+                    @Reload.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnReload;
+                    @Reload.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnReload;
                     @Key2.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
                     @Key2.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
                     @Key2.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnKey2;
@@ -1027,9 +1053,9 @@ namespace JohnStairs.RCC.Inputs
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
-                    @Roll.started += instance.OnRoll;
-                    @Roll.performed += instance.OnRoll;
-                    @Roll.canceled += instance.OnRoll;
+                    @Heal.started += instance.OnHeal;
+                    @Heal.performed += instance.OnHeal;
+                    @Heal.canceled += instance.OnHeal;
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
@@ -1078,6 +1104,9 @@ namespace JohnStairs.RCC.Inputs
                     @Key1.started += instance.OnKey1;
                     @Key1.performed += instance.OnKey1;
                     @Key1.canceled += instance.OnKey1;
+                    @Reload.started += instance.OnReload;
+                    @Reload.performed += instance.OnReload;
+                    @Reload.canceled += instance.OnReload;
                     @Key2.started += instance.OnKey2;
                     @Key2.performed += instance.OnKey2;
                     @Key2.canceled += instance.OnKey2;
@@ -1094,7 +1123,7 @@ namespace JohnStairs.RCC.Inputs
             void OnAutorun(InputAction.CallbackContext context);
             void OnWalk(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
-            void OnRoll(InputAction.CallbackContext context);
+            void OnHeal(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnDive(InputAction.CallbackContext context);
             void OnSurface(InputAction.CallbackContext context);
@@ -1111,6 +1140,7 @@ namespace JohnStairs.RCC.Inputs
             void OnAlignCharacter(InputAction.CallbackContext context);
             void OnPauseRotationWithCharacter(InputAction.CallbackContext context);
             void OnKey1(InputAction.CallbackContext context);
+            void OnReload(InputAction.CallbackContext context);
             void OnKey2(InputAction.CallbackContext context);
         }
     }

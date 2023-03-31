@@ -52,6 +52,7 @@ public class PlayerManager : MonoBehaviour
         if (inputHandler.rollFlag)
         {
             animatorHandler.PlayTargetAnimation("Rolling", true);
+            animatorHandler.animator.SetBool("canMove", false);
             print("rolling is called");
 
         }
@@ -66,5 +67,6 @@ public class PlayerManager : MonoBehaviour
         inputHandler.scrollUp = false;
         inputHandler.scrollDown = false;
         inputHandler.leftClickTapFlag = false;
+        inputHandler.controllerARPG.ActivateCharacterControl = true;
     }
 }
