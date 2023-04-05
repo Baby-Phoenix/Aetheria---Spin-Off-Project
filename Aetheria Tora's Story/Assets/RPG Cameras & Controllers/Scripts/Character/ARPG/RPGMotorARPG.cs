@@ -183,7 +183,7 @@ namespace JohnStairs.RCC.Character.ARPG {
                     _turningDirectionY += 360.0f;
                 }
             }
-
+            _enable3dMovement = true;
             if (_canRotate) {
                 // Rotate the character along the local X axis
                 if (_enable3dMovement) {
@@ -200,8 +200,10 @@ namespace JohnStairs.RCC.Character.ARPG {
 
                     // Rotate the character around the local X axis 
                     transform.Rotate(Vector3.right * _xRotation, Space.Self);
-                    print("Passed here");
+
+                    print("enable3dmovement " + _enable3dMovement);
                 }
+               
             }
             #endregion Rotate the character
 
@@ -221,11 +223,9 @@ namespace JohnStairs.RCC.Character.ARPG {
             base.SetAnimatorParameters(animator);
 
             float inputMagnitude = IsInMotion() ? _inputDirection.magnitude : 0;
-            float inputMagnitudeSmoothing = 1f;
-            print("Smoothing"+inputMagnitudeSmoothing);
+            float inputMagnitudeSmoothing = .1f;
             animator.SetFloat("Input Magnitude", inputMagnitude, inputMagnitudeSmoothing, Time.deltaTime);
             animator.SetFloat("Turning Direction", _turningDirectionY, 0.1f, Time.deltaTime);
-
             animator.SetBool("Crouching", _crouching);
         }
 
