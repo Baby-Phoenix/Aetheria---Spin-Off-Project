@@ -98,7 +98,7 @@ public class BasicGun : MonoBehaviour
                 if(enemyStats != null)
                 {
                     enemyStats.TakeDamage(10);
-                    //enemyStats.enemyManager.enemyLocomotionManager.currentTarget = GetComponent<PlayerStats>();
+                    enemyStats.enemyManager.currentTarget = GetComponent<PlayerStats>();
                 }
             }
         }

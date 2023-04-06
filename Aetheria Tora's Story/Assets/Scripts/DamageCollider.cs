@@ -48,6 +48,7 @@ public class DamageCollider : MonoBehaviour
                 if (!enemyStats.hasBeenHit)
                 {
                     enemyStats.TakeDamage(currentWeaponDamage);
+                    enemyStats.enemyManager.currentTarget = GetComponent<PlayerStats>();
                 }
             }
         }
