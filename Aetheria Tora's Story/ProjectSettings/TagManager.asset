@@ -11,6 +11,7 @@ TagManager:
   - Currency
   - Magazine
   - Potion
+  - Portal
   layers:
   - Default
   - TransparentFX
