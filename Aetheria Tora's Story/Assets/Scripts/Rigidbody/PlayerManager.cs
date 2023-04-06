@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     public bool isGrounded;
     public bool canDoCombo;
     public bool isInvulnerable;
+    public bool isShooting;
 
     void Start()
     {
@@ -52,7 +53,6 @@ public class PlayerManager : MonoBehaviour
         if (inputHandler.rollFlag)
         {
             animatorHandler.PlayTargetAnimation("Rolling", true);
-            animatorHandler.animator.SetBool("canMove", false);
             print("rolling is called");
 
         }
@@ -67,6 +67,6 @@ public class PlayerManager : MonoBehaviour
         inputHandler.scrollUp = false;
         inputHandler.scrollDown = false;
         inputHandler.leftClickTapFlag = false;
-        inputHandler.controllerARPG.ActivateCharacterControl = true;
+        isShooting = false;
     }
 }

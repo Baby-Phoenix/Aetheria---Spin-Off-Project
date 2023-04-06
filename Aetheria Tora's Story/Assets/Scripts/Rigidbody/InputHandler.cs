@@ -87,7 +87,7 @@ public class InputHandler : MonoBehaviour
         HandleRangedInput(delta);
         //HandleAttackInput(delta);
         //HandleQuickSlotsInput();
-        controllerARPG.ActivateCharacterControl = animatorHandler.animator.GetBool("canMove");
+        controllerARPG.ActivateCharacterControl = !animatorHandler.animator.GetBool("isInteracting");
     }
 
     private void MoveInput(float delta)
@@ -98,10 +98,10 @@ public class InputHandler : MonoBehaviour
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
 
-        if (horizontal > 0 || vertical > 0)
-        {
-            playerManager.anim.applyRootMotion = false;
-        }
+        //if (horizontal > 0 || vertical > 0)
+        //{
+        //    playerManager.anim.applyRootMotion = false;
+        //}
 
         if (inputActions.Character.Key1.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
         {
@@ -125,7 +125,7 @@ public class InputHandler : MonoBehaviour
     private void HandleRollInput(float delta)
     {
         shiftInput = inputActions.Character.Sprint.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5;
-        rollFlag = (inputActions.Character.Crouch.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5) && moveAmount > 0;
+        rollFlag = (inputActions.Character.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed && playerStats.staminaBar.slider.value > 5) && moveAmount > 0;
 
         if (shiftInput)
         {
@@ -149,6 +149,7 @@ public class InputHandler : MonoBehaviour
                 leftClickTapFlag = false;
                 playerManager.anim.SetLayerWeight(playerManager.anim.GetLayerIndex("Aiming"), 1);
                 rig.weight = 0.5f;
+                playerManager.isShooting = true;
             }
             else
             {

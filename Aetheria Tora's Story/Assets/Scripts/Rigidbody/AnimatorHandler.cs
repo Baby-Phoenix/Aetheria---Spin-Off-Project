@@ -69,15 +69,15 @@ public class AnimatorHandler : AnimatorManager
 
     //public void OnAnimatorMove()
     //{
-    //    if (playerManager.isInteracting == false)
-    //        return;
+    //    //if (playerManager.isInteracting == false)
+    //    //    return;
 
-    //    float delta = Time.deltaTime;
-    //    playerLocomotion.rigidbody.drag = 0;
-    //    Vector3 deltaPosition = animator.deltaPosition;
-    //    deltaPosition.y = 0;
-    //    Vector3 velocity = deltaPosition / delta;
-    //    playerLocomotion.rigidbody.velocity = velocity;
+    //    //float delta = Time.deltaTime;
+    //    //playerLocomotion.rigidbody.drag = 0;
+    //    //Vector3 deltaPosition = animator.deltaPosition;
+    //    //deltaPosition.y = 0;
+    //    //Vector3 velocity = deltaPosition / delta;
+    //    //playerLocomotion.rigidbody.velocity = velocity;
     //}
 
     private void SetColliderHeight(float height)

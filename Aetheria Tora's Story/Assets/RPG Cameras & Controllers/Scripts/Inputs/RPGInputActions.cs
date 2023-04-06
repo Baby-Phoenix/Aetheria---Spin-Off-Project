@@ -84,6 +84,15 @@ namespace JohnStairs.RCC.Inputs
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""a320677b-a3a2-446c-a7a6-5141853f360a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""89873a76-118e-4dfe-85c9-3838afaa66f3"",
@@ -792,6 +801,17 @@ namespace JohnStairs.RCC.Inputs
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e763702a-26b7-4079-b90f-456daa60cfc7"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -806,6 +826,7 @@ namespace JohnStairs.RCC.Inputs
             m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
             m_Character_Autorun = m_Character.FindAction("Autorun", throwIfNotFound: true);
             m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
+            m_Character_Roll = m_Character.FindAction("Roll", throwIfNotFound: true);
             m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
             m_Character_Heal = m_Character.FindAction("Heal", throwIfNotFound: true);
             m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
@@ -891,6 +912,7 @@ namespace JohnStairs.RCC.Inputs
         private readonly InputAction m_Character_Jump;
         private readonly InputAction m_Character_Autorun;
         private readonly InputAction m_Character_Walk;
+        private readonly InputAction m_Character_Roll;
         private readonly InputAction m_Character_Crouch;
         private readonly InputAction m_Character_Heal;
         private readonly InputAction m_Character_Sprint;
@@ -921,6 +943,7 @@ namespace JohnStairs.RCC.Inputs
             public InputAction @Jump => m_Wrapper.m_Character_Jump;
             public InputAction @Autorun => m_Wrapper.m_Character_Autorun;
             public InputAction @Walk => m_Wrapper.m_Character_Walk;
+            public InputAction @Roll => m_Wrapper.m_Character_Roll;
             public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
             public InputAction @Heal => m_Wrapper.m_Character_Heal;
             public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
@@ -968,6 +991,9 @@ namespace JohnStairs.RCC.Inputs
                     @Walk.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnWalk;
                     @Walk.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnWalk;
                     @Walk.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnWalk;
+                    @Roll.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
+                    @Roll.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
+                    @Roll.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRoll;
                     @Crouch.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
@@ -1050,6 +1076,9 @@ namespace JohnStairs.RCC.Inputs
                     @Walk.started += instance.OnWalk;
                     @Walk.performed += instance.OnWalk;
                     @Walk.canceled += instance.OnWalk;
+                    @Roll.started += instance.OnRoll;
+                    @Roll.performed += instance.OnRoll;
+                    @Roll.canceled += instance.OnRoll;
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
@@ -1122,6 +1151,7 @@ namespace JohnStairs.RCC.Inputs
             void OnJump(InputAction.CallbackContext context);
             void OnAutorun(InputAction.CallbackContext context);
             void OnWalk(InputAction.CallbackContext context);
+            void OnRoll(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
             void OnHeal(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);

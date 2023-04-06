@@ -72,8 +72,24 @@ namespace JohnStairs.RCC.Character.ARPG {
 
                 _movementDirection = CalculateMovementDirection();
 
-                if (_movementDirection != Vector3.zero) {
-                    _facingDirection = _movementDirection;
+                PlayerManager pm = GetComponent<PlayerManager>();
+
+                if (_movementDirection.x != 0 || _movementDirection.z != 0)  // when there is a movement input
+                {
+                    if (pm.isShooting)
+                    {
+                        AlignWithCamera();
+                        _movementDirection = Vector3.zero;
+                    }
+                    else
+                    {
+                        _facingDirection = _movementDirection;
+                    }
+                }
+                else if (_movementDirection.x == 0 && _movementDirection.z == 0) //when there is no movement input
+                {
+                    if (pm.isShooting) 
+                    AlignWithCamera();
                 }
 
                 // Calculate the movement speed
@@ -156,6 +172,8 @@ namespace JohnStairs.RCC.Character.ARPG {
 
             ApplyGravity();
 
+            //print("MovementDirection: " + _movementDirection);
+
             // Move the character
             Move(_movementDirection * Time.deltaTime);
 
@@ -163,7 +181,9 @@ namespace JohnStairs.RCC.Character.ARPG {
             _turningDirectionY = 0;
             if (!IsLookingInDirection(_facingDirection)) {
                 _turningDirectionY = transform.rotation.eulerAngles.y;
-
+               //only align camera when u shoot
+                
+                //AlignWithCamera();
                 Vector3 upReference = _enable3dMovement && (_surface || _dive) ? Vector3.Cross(_facingDirection, transform.right) : Vector3.up;
 
                 Quaternion targetRotation = Quaternion.LookRotation(_facingDirection, upReference);
@@ -201,7 +221,7 @@ namespace JohnStairs.RCC.Character.ARPG {
                     // Rotate the character around the local X axis 
                     transform.Rotate(Vector3.right * _xRotation, Space.Self);
 
-                    print("enable3dmovement " + _enable3dMovement);
+                    //print("enable3dmovement " + _enable3dMovement);
                 }
                
             }
