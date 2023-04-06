@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     EnemyAnimatorManager enemyAnimatorManager;
     EnemyStats enemyStats;
 
+    public State idleState;
     public State currentState;
     public PlayerStats currentTarget;
     public NavMeshAgent navmeshAgent;

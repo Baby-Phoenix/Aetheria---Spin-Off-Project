@@ -446,6 +446,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLocomotionManager: {fileID: 0}
+  idleState: {fileID: 6920396666638088105}
   currentState: {fileID: 6920396666638088105}
   currentTarget: {fileID: 0}
   navmeshAgent: {fileID: 0}
@@ -739,10 +741,15 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  particleFade: {fileID: 0}
+  enemyModel: {fileID: 0}
+  enemyCollider: {fileID: 0}
+  enemyCanvas: {fileID: 0}
   teleportRadius: 5
   teleportChance: 0.1
   maxHeightDifference: 2
   teleportCooldown: 10
+  teleportDelay: 2
   canTeleport: 0
 --- !u!1 &8144357725125630010
 GameObject:

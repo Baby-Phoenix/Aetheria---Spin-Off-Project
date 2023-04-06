@@ -10,7 +10,7 @@ public class EnemyStats : CharacterStats
     public Vector3 originalPos;
     public bool hasBeenHit;
     float hitTimer = 0;
-    private bool isDead = false;
+    public bool isDead = false;
     Animator animator;
 
     private void Awake()
