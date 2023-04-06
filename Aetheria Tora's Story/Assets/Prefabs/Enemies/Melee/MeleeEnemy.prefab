@@ -47,6 +47,7 @@ MonoBehaviour:
   combatStanceState: {fileID: 1804449614}
   enemyAttacks:
   - {fileID: 11400000, guid: 3be7a679bb09b4343973d56e78d7f610, type: 2}
+  - {fileID: 11400000, guid: 7d56a3277923f71468c5e0ce948e5fbc, type: 2}
   currentAttack: {fileID: 0}
   lastAttack: {fileID: 0}
 --- !u!1 &1604208007
@@ -580,6 +581,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
