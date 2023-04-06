@@ -87,7 +87,7 @@ public class InputHandler : MonoBehaviour
         HandleRangedInput(delta);
         //HandleAttackInput(delta);
         //HandleQuickSlotsInput();
-        controllerARPG.ActivateCharacterControl = !animatorHandler.animator.GetBool("isInteracting");
+        controllerARPG.ActivateCharacterControl = !animatorHandler.animator.GetBool("isInteracting") && !playerManager.isShooting;
     }
 
     private void MoveInput(float delta)
@@ -97,6 +97,9 @@ public class InputHandler : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+
+        if (moveAmount > 0)
+            rig.weight = 0;
 
         //if (horizontal > 0 || vertical > 0)
         //{
