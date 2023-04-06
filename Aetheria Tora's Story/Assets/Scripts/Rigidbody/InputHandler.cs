@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Animations.Rigging;
 using JohnStairs.RCC.Character.ARPG;
 using JohnStairs.RCC.Inputs;
+using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
@@ -81,6 +82,7 @@ public class InputHandler : MonoBehaviour
     public void TickInput(float delta)
     {
        // crouchingFlag = inputActions.Character.Crouch.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+       SwitchScenes();
         MoveInput(delta);
         HandleRollInput(delta);
         HandleReload();
@@ -88,6 +90,18 @@ public class InputHandler : MonoBehaviour
         //HandleAttackInput(delta);
         //HandleQuickSlotsInput();
         controllerARPG.ActivateCharacterControl = !animatorHandler.animator.GetBool("isInteracting") && !playerManager.isShooting;
+    }
+
+    private void SwitchScenes()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene(1);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void MoveInput(float delta)

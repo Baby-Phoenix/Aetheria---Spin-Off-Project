@@ -32,6 +32,7 @@ public class EnemyGameobjects : MonoBehaviour
                 enemy.GetComponent<EnemyStats>().currentHealth = enemy.GetComponent<EnemyStats>().maxHealth;
                 enemy.GetComponent<EnemyStats>().healthBar.SetMaxHealth(enemy.GetComponent<EnemyStats>().maxHealth);
                 enemy.GetComponent<EnemyStats>().isDead = false;
+                enemy.GetComponent<EnemyStats>().gameObject.transform.position =   enemy.GetComponent<EnemyStats>().originalPos;
                 enemy.SetActive(true);
             }
             playerStats.gameObject.SetActive(false);

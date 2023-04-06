@@ -17,7 +17,7 @@ public class EnemyStats : CharacterStats
     {
         animator = GetComponentInChildren<Animator>();
         enemyManager = GetComponent<EnemyManager>();
-        originalPos = transform.localPosition;
+        originalPos = transform.position;
     }
 
     private void Update()
