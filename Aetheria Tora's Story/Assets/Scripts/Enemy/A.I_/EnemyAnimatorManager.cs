@@ -44,18 +44,20 @@ public class EnemyAnimatorManager : AnimatorManager
 
     public void Shoot()
     {
-        GameObject clone = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
-        Rigidbody rb = clone.GetComponentInChildren<Rigidbody>();
-
-        Vector3 direction = enemyManager.currentTarget.transform.position - spawnPoint.position;
-        direction.y += 1;
-        direction.Normalize();
-
-        rb.AddForce(direction * bulletSpeed, ForceMode.Impulse);
-        if(clone != null)
+        if (enemyManager.currentTarget != null && enemyManager.currentTarget.currentHealth > 0)
         {
-            Destroy(clone, 3);
+            GameObject clone = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+            Rigidbody rb = clone.GetComponentInChildren<Rigidbody>();
+
+            Vector3 direction = enemyManager.currentTarget.transform.position - spawnPoint.position;
+            direction.y += 1;
+            direction.Normalize();
+
+            rb.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+            if (clone != null)
+            {
+                Destroy(clone, 3);
+            }
         }
-       
     }
 }

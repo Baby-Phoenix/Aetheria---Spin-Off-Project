@@ -182,10 +182,15 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  particleFade: {fileID: 0}
+  enemyModel: {fileID: 0}
+  enemyCollider: {fileID: 0}
+  enemyCanvas: {fileID: 0}
   teleportRadius: 5
   teleportChance: 0.1
   maxHeightDifference: 2
   teleportCooldown: 10
+  teleportDelay: 2
   canTeleport: 0
 --- !u!1 &1914470289
 GameObject:
@@ -603,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLocomotionManager: {fileID: 0}
+  idleState: {fileID: 1914470291}
   currentState: {fileID: 1914470291}
   currentTarget: {fileID: 0}
   navmeshAgent: {fileID: 0}
