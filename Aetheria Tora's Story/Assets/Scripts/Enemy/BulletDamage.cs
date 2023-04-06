@@ -35,6 +35,10 @@ public class BulletDamage : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if(collision.tag == "Enemy")
+        {
+            
+        }
         else
         {
             Destroy(gameObject);

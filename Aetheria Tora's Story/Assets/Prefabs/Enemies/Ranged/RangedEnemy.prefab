@@ -295,6 +295,11 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 512
+  teleportRadius: 5
+  teleportChance: 0.1
+  maxHeightDifference: 2
+  teleportCooldown: 10
+  canTeleport: 1
 --- !u!1 &5425680021043364471
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +786,7 @@ MonoBehaviour:
   crystalSoulCount: 0
   soulFragmentCount: 0
   cleansingCrystalCount: 0
+  currencyCount: 0
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
@@ -809,7 +815,7 @@ MonoBehaviour:
   isPerformingAction: 0
   distanceFromTarget: 0
   rotationSpeed: 15
-  maximumAttackRange: 1.5
+  maximumAttackRange: 15
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
