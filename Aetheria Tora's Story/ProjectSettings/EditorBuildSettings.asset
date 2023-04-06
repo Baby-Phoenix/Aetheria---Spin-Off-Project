@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Production Scenes/Emerald Island.unity
-    guid: 76e27f7574bc935469ebdc0534def6de
+    path: Assets/Scenes/Emerald Island test.unity
+    guid: 830733cd47d39b44380fa8db80c46e6a
+  - enabled: 1
+    path: Assets/Scenes/stage1 Dungeon testing.unity
+    guid: e6f3a9517fd7f7c4bb2ac9c2ef971622
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a9b16135bce489e4f8bbd8ac5a147950,
       type: 2}
