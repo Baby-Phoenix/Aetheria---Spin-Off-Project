@@ -7,7 +7,7 @@ public class BasicGun : MonoBehaviour
 {
     //Gun Stats
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
+    public int magazineSize, bulletsPerTap, totalBullets, maxBullets;
     public bool allowButtonHold;
 
    public int bulletsLeft, bulletsShot;
@@ -66,7 +66,7 @@ public class BasicGun : MonoBehaviour
             }
         }
 
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) 
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && totalBullets > 0)  
         {
             Shoot();
             FindObjectOfType<AudioManager>().Play("Gun");
@@ -127,6 +127,7 @@ public class BasicGun : MonoBehaviour
 
     private void ReloadFinished()
     {
+        totalBullets -= magazineSize - bulletsLeft; 
         bulletsLeft = magazineSize;
         reloading = false;
     }
